@@ -444,7 +444,7 @@ def analyze_resume():
         """
 
         # Gemini REST API call
-        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
+        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyB0_1qrv04YNN8n2R6iH5SuwEgj6r0Or2k"
         headers = {"Content-Type": "application/json"}
         data = {
             "contents": [
