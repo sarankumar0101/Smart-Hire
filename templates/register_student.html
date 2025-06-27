@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration - SmartHire</title>
+  <link rel="stylesheet" href="../static/register_student.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">SmartHire</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="/internships">Internships</a></li>
+      <li><a href="/jobs">Jobs</a></li>
+      <li><a href="/resume_tools">Resume Tools</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/Login">Login</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">☰</div>
+  </nav>
+
+  <div class="container">
+    <h2>Student Registration</h2>
+    <form id="registerForm">
+      <div class="form-group"><input type="text" name="firstName" placeholder="First Name" required></div>
+      <div class="form-group"><input type="text" name="lastName" placeholder="Last Name" required></div>
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <div class="otp-buttons">
+          <input type="text" id="emailOtp" placeholder="Enter OTP">
+          <button type="button" onclick="sendEmailOtp()">Send OTP</button>
+          <button type="button" onclick="verifyEmailOtp()">Verify OTP</button>
+        </div>
+        <span id="emailStatus" class="status"></span>
+      </div>
+      <div class="form-group"><input type="text" name="college" id="college" placeholder="College Name" required></div>
+      <div class="form-group">
+        <select name="course" id="course" required>
+          <option value="" disabled selected>Select Course</option>
+          <option>B.Tech</option>
+          <option>Degree</option>
+        </select>
+      </div>
+      <div class="form-group"><input type="text" name="graduation" id="graduation" placeholder="Graduating Year" required></div>
+      <div class="form-group">
+        <select name="year" id="year" required>
+          <option value="" disabled selected>Select Present Year</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+      <div class="form-group"><input type="text" name="roll" id="roll" placeholder="Roll Number" required></div>
+      <div class="form-group"><input type="password" id="password" name="password" placeholder="Password" required></div>
+      <div class="form-group">
+        <input type="password" id="confirmPassword" placeholder="Re-enter Password" required>
+        <span id="passwordMatch" class="status"></span>
+      </div>
+      <div class="form-group terms-group">
+        <div class="form-group terms-inline">
+          <input type="checkbox" id="agreeTerms" required>
+          <label for="agreeTerms">
+            I agree to the <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="register-btn">Register as Student</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    let isEmailVerified = false;
+    let isPasswordValid = false;
+
+    function sendEmailOtp() {
+      const email = document.getElementById("email").value;
+      fetch("/send_otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      }).then(res => res.json()).then(data => alert(data.message));
+    }
+
+   function verifyEmailOtp() {
+  const email = document.getElementById("email").value;
+  const otp = document.getElementById("emailOtp").value;
+  const status = document.getElementById("emailStatus");
+  fetch("/verify_otp", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, otp })  // ✅ Correct key is 'email'
+  })
+  .then(res => res.json())
+  .then(data => {
+    status.innerText = data.message;
+    status.style.color = data.status === "success" ? "green" : "red";
+    isEmailVerified = data.status === "success";
+  });
+}
+
+
+    document.getElementById("confirmPassword").addEventListener("input", function () {
+      const pwd = document.getElementById("password").value;
+      const confirmPwd = this.value;
+      const msg = document.getElementById("passwordMatch");
+      isPasswordValid = pwd === confirmPwd && pwd.length >= 8;
+      msg.textContent = isPasswordValid ? "✔ Passwords match" : "✖ Passwords do not match or format is incorrect";
+      msg.style.color = isPasswordValid ? "green" : "red";
+    });
+
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (!isEmailVerified || !isPasswordValid || !document.getElementById("agreeTerms").checked) {
+        alert("Please complete all validations and verify your email.");
+        return;
+      }
+
+      const formData = new URLSearchParams();
+      formData.append("firstName", document.querySelector('input[name="firstName"]').value);
+      formData.append("lastName", document.querySelector('input[name="lastName"]').value);
+      formData.append("dob", document.getElementById("dob").value);
+      formData.append("email", document.getElementById("email").value);
+      formData.append("college", document.getElementById("college").value);
+      formData.append("course", document.getElementById("course").value);
+      formData.append("graduation", document.getElementById("graduation").value);
+      formData.append("year", document.getElementById("year").value);
+      formData.append("roll", document.getElementById("roll").value);
+      formData.append("password", document.getElementById("password").value);
+
+      fetch("/register_student_submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        } else {
+          alert(data.message || "Something went wrong");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

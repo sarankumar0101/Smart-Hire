@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartHire</title>
+  <link rel="stylesheet" href="../static/index.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <!-- Logo image removed as requested -->
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="internships.html">Internships</a></li>
+      <li><a href="jobs.html">Jobs</a></li>
+      <li><a href="/resume_tools">Resume Tools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/Register">Register</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+
+  <main class="main-content">
+    <h1><span class="highlight">Unlock</span> Your Career</h1>
+    <p>
+      Explore opportunities to grow, showcase skills, gain CV points & get hired by your dream company.
+    </p>
+    <div class="card-container">
+      <a href="internships.html" class="card card-green"> 
+        <h2>Internships</h2> 
+        <p>Gain Practical Experience</p>
+      </a>
+      <a href="jobs.html" class="card card-pink"> 
+        <h2>Jobs</h2> 
+        <p>Land Your Dream Job</p>
+      </a>
+      <a href="/resume_tools" class="card card-blue"> 
+        <h2>Resume Tools</h2> 
+        <p>Boost Your Resume with Ai Powered Tools</p>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // --- Login redirect logic for main cards ---
+    function isLoggedIn() {
+      // This is a simple check; for production, use a more secure method or set a JS variable from Flask
+      return document.cookie.includes('user_id') || window.localStorage.getItem('logged_in') === 'true';
+    }
+
+    function handleProtectedClick(e, targetUrl) {
+      e.preventDefault();
+      if (!isLoggedIn()) {
+        window.location.href = '/login?next=' + encodeURIComponent(targetUrl);
+      } else {
+        window.location.href = targetUrl;
+      }
+    }
+
+    document.querySelectorAll('.card-container a').forEach(function(link) {
+      const href = link.getAttribute('href');
+      if (href === 'internships.html' || href === 'jobs.html' || href === '/resume_tools') {
+        link.addEventListener('click', function(e) {
+          // Map .html to Flask route
+          let target = href;
+          if (href === 'internships.html') target = '/internships';
+          if (href === 'jobs.html') target = '/jobs';
+          handleProtectedClick(e, target);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

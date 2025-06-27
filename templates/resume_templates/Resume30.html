@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 30 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #9b59b6, #e74c3c);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #9b59b6;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #9b59b6;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #e74c3c;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .resume-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #9b59b6, #e74c3c, #f39c12, #3498db);
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #9b59b6, #e74c3c);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .header-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><polygon points="50,10 60,30 80,30 65,45 70,65 50,55 30,65 35,45 20,30 40,30" fill="rgba(255,255,255,0.1)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .content-section {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      color: #9b59b6;
+      border-bottom: 3px solid #e74c3c;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border-left: 5px solid #9b59b6;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #9b59b6, #e74c3c);
+    }
+    
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #9b59b6;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1.1rem;
+      color: #e74c3c;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-category {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #9b59b6;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-category::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #9b59b6, #e74c3c);
+    }
+    
+    .skill-category h4 {
+      color: #9b59b6;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 8px 0;
+      color: #555;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .skill-list li:before {
+      content: "✨";
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .portfolio-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #9b59b6;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portfolio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #9b59b6, #e74c3c);
+    }
+    
+    .portfolio-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #9b59b6;
+      margin-bottom: 10px;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #9b59b6;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #9b59b6;
+      background: rgba(155, 89, 182, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        background: white;
+      }
+      
+      .header-section {
+        background: #9b59b6;
+        color: white;
+      }
+      
+      .content-section {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-palette"></i> SmartHire Resume Builder - Template 30</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header-section">
+      <div class="header-content">
+        <div class="name" contenteditable="true">YOUR NAME</div>
+        <div class="title" contenteditable="true">Creative Director</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span contenteditable="true">your.email@example.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span contenteditable="true">(555) 555-0123</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span contenteditable="true">City, State</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-behance"></i>
+            <span contenteditable="true">behance.net/yourprofile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Creative Director</div>
+          <div class="company-info" contenteditable="true">Design Studio Inc. | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Led creative vision for major brand campaigns and digital experiences<br>
+            • Managed team of 12 designers, copywriters, and creative professionals<br>
+            • Developed brand identities and visual systems for Fortune 500 companies<br>
+            • Increased client satisfaction scores by 40% through innovative design solutions
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Senior Art Director</div>
+          <div class="company-info" contenteditable="true">Advertising Agency | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Created award-winning campaigns for national and international brands<br>
+            • Designed print, digital, and outdoor advertising materials<br>
+            • Collaborated with copywriters and strategists to develop creative concepts<br>
+            • Won 3 industry awards for creative excellence and innovation
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Bachelor of Fine Arts in Graphic Design</div>
+          <div class="company-info" contenteditable="true">Art Institute | 2014 - 2018</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.9/4.0 | Dean's List | Senior Portfolio Award | Design Student Association President
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-tools"></i>
+          CREATIVE SKILLS
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Design Software</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Adobe Creative Suite</li>
+              <li contenteditable="true">Figma & Sketch</li>
+              <li contenteditable="true">Cinema 4D</li>
+              <li contenteditable="true">After Effects</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Creative Disciplines</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Brand Identity Design</li>
+              <li contenteditable="true">UI/UX Design</li>
+              <li contenteditable="true">Typography</li>
+              <li contenteditable="true">Motion Graphics</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Leadership</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Creative Direction</li>
+              <li contenteditable="true">Team Management</li>
+              <li contenteditable="true">Client Presentation</li>
+              <li contenteditable="true">Project Management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-star"></i>
+          PORTFOLIO HIGHLIGHTS
+        </div>
+        <div class="portfolio-grid">
+          <div class="portfolio-card">
+            <div class="portfolio-title" contenteditable="true">Global Brand Redesign</div>
+            <div class="job-description" contenteditable="true">
+              Complete brand identity redesign for international retail chain, including logo, packaging, and digital presence.
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <div class="portfolio-title" contenteditable="true">Digital Campaign Series</div>
+            <div class="job-description" contenteditable="true">
+              Award-winning digital campaign featuring interactive web experiences and social media content.
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <div class="portfolio-title" contenteditable="true">Mobile App Design</div>
+            <div class="job-description" contenteditable="true">
+              User experience design for mobile application with 1M+ downloads and 4.8-star rating.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

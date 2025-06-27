@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 1 - SmartHire Resume Builder</title>
+  <link rel="stylesheet" href="airesume.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .header-bar {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .resume-template {
+      max-width: 850px;
+      margin: 30px auto;
+      display: flex;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .sidebar {
+      background-color: #667eea;
+      width: 60px;
+    }
+    
+    .resume-content {
+      padding: 30px;
+      flex: 1;
+    }
+    
+    .resume-content h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .contact-info, .section {
+      margin-bottom: 20px;
+    }
+    
+    .section h2 {
+      font-size: 18px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      color: #667eea;
+    }
+    
+    .download-btn, .back-btn {
+      padding: 10px 15px;
+      margin-right: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    
+    .download-btn { 
+      background-color: #28a745; 
+      color: white; 
+    }
+    
+    .back-btn { 
+      background-color: #667eea; 
+      color: white; 
+    }
+    
+    .download-btn:hover, .back-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #667eea;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #667eea;
+      background: rgba(102, 126, 234, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      .resume-template {
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-magic"></i> SmartHire Resume Builder - Template 1</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-template">
+    <div class="sidebar"></div>
+    <div class="resume-content">
+      <h1 contenteditable="true">YOUR NAME</h1>
+      <div class="contact-info" contenteditable="true">
+        Your Address, City, State ZIP | (555) 555-0123 | your.email@example.com | www.yourwebsite.com
+      </div>
+      <div class="section" contenteditable="true">
+        <h2>EXPERIENCE</h2>
+        <p><strong>20XX – Present</strong><br>
+        Job Title | Company Name | City, State<br>
+        • Key achievement or responsibility<br>
+        • Another key achievement or responsibility<br>
+        • Third key achievement or responsibility</p>
+        
+        <p><strong>20XX – 20XX</strong><br>
+        Previous Job Title | Previous Company | City, State<br>
+        • Key achievement or responsibility<br>
+        • Another key achievement or responsibility<br>
+        • Third key achievement or responsibility</p>
+        
+        <p><strong>20XX – 20XX</strong><br>
+        Internship Title | Company Name | City, State<br>
+        • Key achievement or responsibility<br>
+        • Another key achievement or responsibility</p>
+      </div>
+      <div class="section" contenteditable="true">
+        <h2>EDUCATION</h2>
+        <p><strong>Degree Name</strong><br>
+        University Name | City, State<br>
+        Graduation Date | GPA (if applicable)</p>
+      </div>
+      <div class="section" contenteditable="true">
+        <h2>SKILLS</h2>
+        <ul>
+          <li>Skill 1</li>
+          <li>Skill 2</li>
+          <li>Skill 3</li>
+          <li>Skill 4</li>
+          <li>Skill 5</li>
+          <li>Skill 6</li>
+        </ul>
+      </div>
+      <div class="section" contenteditable="true">
+        <h2>PROJECTS</h2>
+        <p><strong>Project Name</strong><br>
+        Brief description of the project, technologies used, and outcomes achieved.</p>
+        
+        <p><strong>Another Project</strong><br>
+        Brief description of another project, technologies used, and outcomes achieved.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-template');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html>

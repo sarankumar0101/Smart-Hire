@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - SmartHire</title>
+  <link rel="stylesheet" href="../static/index.css" />
+  <style>
+    .about-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(30, 64, 175, 0.08);
+      padding: 40px 32px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .about-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a3c6b;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .about-highlight {
+      color: #2563eb;
+      font-weight: 600;
+    }
+    .about-section {
+      margin-bottom: 32px;
+    }
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .feature-card {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 20px 18px;
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a3c6b;
+    }
+    .feature-desc {
+      font-size: 0.98rem;
+      color: #334155;
+    }
+    @media (max-width: 700px) {
+      .about-container { padding: 18px 6px; }
+      .about-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <!-- Logo image removed as requested -->
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/internships">Internships</a>
+      <a href="/jobs">Jobs</a>
+      <a href="/resume_tools">Resume Tools</a>
+      <a href="/about">About</a>
+      <a href="/Register">Register</a>
+    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+  <div class="about-container">
+    <div class="about-title">About <span class="about-highlight">SmartHire</span></div>
+    <div class="about-section">
+      <p>
+        <b>SmartHire</b> is a modern, AI-powered job and internship portal designed to connect students and administrators with the best opportunities. Our platform streamlines the application process, offers advanced resume analysis, and provides a seamless experience for both job seekers and recruiters.
+      </p>
+    </div>
+    <div class="about-section">
+      <h3>Key Features</h3>
+      <div class="about-features">
+        <div class="feature-card">
+          <div class="feature-title">Student & Administrator Registration</div>
+          <div class="feature-desc">Secure sign-up and login for students and company administrators, with email verification and "Remember Me" support.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Job & Internship Postings</div>
+          <div class="feature-desc">Administrators can post, manage, and review job and internship opportunities, while students can browse and apply easily.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">AI Resume Analysis</div>
+          <div class="feature-desc">Upload your resume and receive instant, AI-generated feedback on strengths, weaknesses, and suggestions for improvement.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Application Management</div>
+          <div class="feature-desc">Track your applications, view statuses, and receive notifications about interview shortlisting or rejections.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Responsive Design</div>
+          <div class="feature-desc">Enjoy a beautiful, mobile-friendly interface built with React and Tailwind CSS for a smooth experience on any device.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Secure & Private</div>
+          <div class="feature-desc">All user data is securely stored and managed, with robust authentication and privacy controls.</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-section">
+      <h3>Our Mission</h3>
+      <p>
+        To empower students and organizations by making the hiring process smarter, faster, and more transparent. We believe in leveraging technology to bridge the gap between talent and opportunity.
+      </p>
+    </div>
+    <div class="about-section">
+      <h3>Contact</h3>
+      <p>
+        For feedback, support, or partnership inquiries, please email us at <a href="mailto:smarthire2k25@gmail.com">smarthire2k25@gmail.com</a>.
+      </p>
+    </div>
+  </div>
+  <script>
+    document.getElementById("hamburger").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("show");
+    });
+  </script>
+</body>
+</html> 

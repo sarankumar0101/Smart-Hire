@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume4 - Sonu Jain</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f6f6f6;
+      color: #333;
+    }
+    .resume-wrapper {
+      background: #fff;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      letter-spacing: 2px;
+    }
+    header h2 {
+      margin: 5px 0 0;
+      font-weight: normal;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #ccc;
+    }
+    section {
+      margin-top: 30px;
+    }
+    h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+    .contact {
+      font-size: 14px;
+      text-align: center;
+      color: #666;
+      margin-top: 10px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .btn-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 0 5px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .download-btn { background: #28a745; color: #fff; }
+    .back-btn { background: #dc3545; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="resume-wrapper" id="resume" contenteditable="true">
+    <header>
+      <h1>Sonu Jain</h1>
+      <h2>Manager Regulatory Affairs</h2>
+    </header>
+
+    <div class="contact">
+      4567 Main Street // Metropolis, NY 98052 // (716) 555 - 0100 // sonu@example.com
+    </div>
+
+    <section>
+      <h3>Profile</h3>
+      <p>Collaborative, strategic, and solutions-oriented personal care industry attorney and regulatory affairs professional...</p>
+    </section>
+
+    <section>
+      <h3>Experience</h3>
+      <strong>Manager Regulatory Affairs</strong><br>
+      Contoso // Metropolis, New York // 20XX - Present
+      <p>Research and advise on cosmetics industry topics including product safety, environmental and social awareness issues such as ingredient sustainability, GMOs, micro-plastics, and natural positioning.</p>
+
+      <h4>Achievements + Highlights</h4>
+      <ul>
+        <li><strong>Contract review and negotiation.</strong> Review and negotiate business agreements...</li>
+        <li><strong>Marketing claims and packaging review.</strong> Review and advise management and employees...</li>
+        <li><strong>Provide leadership and expertise.</strong> Ensure compliance and coordinate and oversee work of EU Safety Assessor.</li>
+      </ul>
+    </section>
+
+    <div class="btn-container">
+      <button class="btn back-btn" onclick="goBack()">Back</button>
+      <button class="btn download-btn" onclick="downloadPDF()">Download PDF</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById('resume');
+      html2pdf().from(element).save('resume.pdf');
+    }
+  </script>
+</body>
+</html>

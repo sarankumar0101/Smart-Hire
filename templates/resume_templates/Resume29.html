@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 29 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #2c3e50;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #34495e;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+    }
+    
+    .content-section {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      border-bottom: 3px solid #34495e;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border-left: 5px solid #2c3e50;
+    }
+    
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1.1rem;
+      color: #34495e;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-category {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #2c3e50;
+    }
+    
+    .skill-category h4 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 8px 0;
+      color: #555;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .skill-list li:before {
+      content: "📊";
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .project-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #2c3e50;
+    }
+    
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #2c3e50;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #2c3e50;
+      background: rgba(44, 62, 80, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        background: white;
+      }
+      
+      .header-section {
+        background: #2c3e50;
+        color: white;
+      }
+      
+      .content-section {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-chart-bar"></i> SmartHire Resume Builder - Template 29</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header-section">
+      <div class="name" contenteditable="true">YOUR NAME</div>
+      <div class="title" contenteditable="true">Data Scientist</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span contenteditable="true">your.email@example.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span contenteditable="true">(555) 555-0123</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span contenteditable="true">City, State</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <span contenteditable="true">github.com/yourprofile</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Senior Data Scientist</div>
+          <div class="company-info" contenteditable="true">Tech Company Inc. | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Developed machine learning models improving business metrics by 25%<br>
+            • Led data science team of 5 analysts and engineers<br>
+            • Built predictive models for customer churn and revenue forecasting<br>
+            • Implemented A/B testing framework resulting in 15% conversion improvement
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Data Analyst</div>
+          <div class="company-info" contenteditable="true">Analytics Firm | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Analyzed large datasets using SQL, Python, and R<br>
+            • Created interactive dashboards and reports for stakeholders<br>
+            • Performed statistical analysis and hypothesis testing<br>
+            • Collaborated with cross-functional teams to drive data-informed decisions
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Master of Science in Data Science</div>
+          <div class="company-info" contenteditable="true">University Name | 2016 - 2018</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.9/4.0 | Thesis: "Machine Learning Applications in Business Analytics"
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Bachelor of Science in Statistics</div>
+          <div class="company-info" contenteditable="true">University Name | 2012 - 2016</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.8/4.0 | Minor in Computer Science
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-tools"></i>
+          TECHNICAL SKILLS
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Programming Languages</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Python (NumPy, Pandas, Scikit-learn)</li>
+              <li contenteditable="true">R (ggplot2, dplyr, caret)</li>
+              <li contenteditable="true">SQL (PostgreSQL, MySQL)</li>
+              <li contenteditable="true">JavaScript (D3.js, Chart.js)</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Machine Learning</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Supervised Learning</li>
+              <li contenteditable="true">Unsupervised Learning</li>
+              <li contenteditable="true">Deep Learning (TensorFlow, PyTorch)</li>
+              <li contenteditable="true">Natural Language Processing</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Tools & Platforms</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Jupyter Notebooks</li>
+              <li contenteditable="true">Tableau</li>
+              <li contenteditable="true">AWS (S3, EC2, SageMaker)</li>
+              <li contenteditable="true">Git & GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-project-diagram"></i>
+          PROJECTS
+        </div>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-title" contenteditable="true">Customer Segmentation Model</div>
+            <div class="job-description" contenteditable="true">
+              Built clustering model to segment customers, resulting in 30% improvement in marketing campaign effectiveness.
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-title" contenteditable="true">Predictive Analytics Dashboard</div>
+            <div class="job-description" contenteditable="true">
+              Created interactive dashboard using Tableau and Python for real-time business metrics and forecasting.
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-title" contenteditable="true">Recommendation System</div>
+            <div class="job-description" contenteditable="true">
+              Developed collaborative filtering algorithm increasing user engagement by 40% and sales by 25%.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

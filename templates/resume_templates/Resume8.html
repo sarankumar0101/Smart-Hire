@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template - Color Block</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .left, .right {
+      padding: 20px;
+    }
+
+    .left {
+      width: 65%;
+      border-right: 2px solid #ddd;
+    }
+
+    .right {
+      width: 35%;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin: 5px 0 15px 0;
+      font-size: 24px;
+      color: #007bff;
+    }
+
+    h3 {
+      background: #007bff;
+      color: white;
+      padding: 5px 10px;
+      margin: 20px 0 10px 0;
+      font-size: 18px;
+    }
+
+    p, li {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px 10px 0 0;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .skill-item {
+      margin-bottom: 8px;
+      color: #007bff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Left Column -->
+    <div class="left">
+      <h1 contenteditable="true">IAN</h1>
+      <h1 contenteditable="true" style="color: #666;">HANSSON</h1>
+
+      <h3>PROFILE</h3>
+      <textarea rows="5" placeholder="Write your career profile here..."></textarea>
+
+      <h3>EXPERIENCE</h3>
+      <p contenteditable="true"><strong>Adatum Corporation</strong><br>20XX - PRESENT</p>
+      <textarea rows="4" placeholder="Describe your role and achievements..."></textarea>
+
+      <p contenteditable="true"><strong>Proseware, Inc.</strong><br>20XX - 20XX</p>
+      <textarea rows="4" placeholder="Describe your role and achievements..."></textarea>
+
+      <p contenteditable="true"><strong>Relecloud</strong><br>20XX - 20XX</p>
+      <textarea rows="4" placeholder="Describe your role and achievements..."></textarea>
+
+      <h3>EDUCATION</h3>
+      <p contenteditable="true"><strong>Graphic Design Institute</strong><br>20XX - 20XX<br>Master of Fine Arts, Graphic Design</p>
+
+      <p contenteditable="true"><strong>Jasper University</strong><br>20XX - 20XX<br>Bachelor of Arts, Graphic Design</p>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right">
+      <h2 contenteditable="true">Graphic Designer</h2>
+      <h2 contenteditable="true" style="color: #333;">UI/UX Engineer</h2>
+      <h2 contenteditable="true" style="color: gray;">Developer</h2>
+
+      <h3>CONTACT</h3>
+      <p contenteditable="true">816-555-0146<br>ian_hansson<br>hansson@example.com<br>www.example.com</p>
+
+      <h3>SKILLS</h3>
+      <ul>
+        <li class="skill-item" contenteditable="true">Design software</li>
+        <li class="skill-item" contenteditable="true">Typography</li>
+        <li class="skill-item" contenteditable="true">UI/UX design</li>
+        <li class="skill-item" contenteditable="true">Print design</li>
+        <li class="skill-item" contenteditable="true">Project management</li>
+        <li class="skill-item" contenteditable="true">Creative problem solving</li>
+        <li class="skill-item" contenteditable="true">Communication skills</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <button onclick="window.history.back()">Back</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <script>
+    function downloadPDF() {
+      alert("PDF download functionality to be implemented.");
+    }
+  </script>
+
+</body>
+
+</html>

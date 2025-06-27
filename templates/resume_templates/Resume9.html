@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template - Creative Sales</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 16px;
+      color: #333;
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 30px;
+      border-bottom: 2px solid #333;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .contact {
+      text-align: right;
+      font-size: 14px;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .two-columns {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .column {
+      width: 48%;
+    }
+
+    ul {
+      list-style: disc inside;
+      columns: 2;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div>
+        <h1 contenteditable="true">Peyton</h1><br>
+        <h1 contenteditable="true" style="color: #000;">Davis</h1>
+      </div>
+      <div class="contact" contenteditable="true">
+        123 South St, Manhattan, NY<br>
+        805.555.0123<br>
+        peyton@example.com<br>
+        LinkedIn Profile<br>
+        www.interestingsite.com
+      </div>
+    </div>
+
+    <!-- About Me -->
+    <h3>ABOUT ME</h3>
+    <textarea rows="4" placeholder="Write a brief about yourself..."></textarea>
+
+    <!-- Experience & Education -->
+    <div class="two-columns">
+      <!-- Experience -->
+      <div class="column">
+        <h3>EXPERIENCE</h3>
+
+        <p contenteditable="true"><strong>Account Manager / Vanarsdel, Ltd.</strong><br>June 20XX – Present</p>
+        <textarea rows="4" placeholder="Describe your responsibilities..."></textarea>
+
+        <p contenteditable="true"><strong>Sales Associate / Vanarsdel, Ltd.</strong><br>October 20XX – June 20XX</p>
+        <textarea rows="4" placeholder="Describe your responsibilities..."></textarea>
+      </div>
+
+      <!-- Education -->
+      <div class="column">
+        <h3>EDUCATION</h3>
+
+        <p contenteditable="true"><strong>MBA / School, Location</strong><br>May 20XX</p>
+        <textarea rows="4" placeholder="Degree details..."></textarea>
+
+        <p contenteditable="true"><strong>BA / School, Location</strong><br>December 20XX</p>
+        <textarea rows="4" placeholder="Degree details..."></textarea>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <h3>SKILLS</h3>
+    <ul>
+      <li contenteditable="true">Problem solving</li>
+      <li contenteditable="true">Flexibility</li>
+      <li contenteditable="true">Communication</li>
+      <li contenteditable="true">Organization</li>
+      <li contenteditable="true">Critical thinking</li>
+      <li contenteditable="true">Collaboration</li>
+    </ul>
+
+    <!-- Activities -->
+    <h3>ACTIVITIES</h3>
+    <textarea rows="5" placeholder="Describe your professional interests and activities..."></textarea>
+
+    <button onclick="window.history.back()">Back</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+  </div>
+
+  <script>
+    function downloadPDF() {
+      alert("PDF download functionality to be implemented.");
+    }
+  </script>
+
+</body>
+
+</html>

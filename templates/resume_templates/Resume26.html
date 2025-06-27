@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 26 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e74c3c, #3498db);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #e74c3c;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #e74c3c, #3498db);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .header-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 65 L30 75 L35 55 L20 40 L40 40 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+    }
+    
+    .content-section {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      color: #e74c3c;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border-left: 5px solid #e74c3c;
+      position: relative;
+    }
+    
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      background: #3498db;
+      border-radius: 50%;
+    }
+    
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #e74c3c;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1.1rem;
+      color: #3498db;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-category {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #e74c3c;
+    }
+    
+    .skill-category h4 {
+      color: #e74c3c;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 8px 0;
+      color: #555;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .skill-list li:before {
+      content: "❤";
+      color: #e74c3c;
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+    
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .cert-card {
+      background: linear-gradient(135deg, #e74c3c, #3498db);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    
+    .cert-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .cert-org {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #e74c3c;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #e74c3c;
+      background: rgba(231, 76, 60, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        background: white;
+      }
+      
+      .header-section {
+        background: #e74c3c;
+        color: white;
+      }
+      
+      .content-section {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-heartbeat"></i> SmartHire Resume Builder - Template 26</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header-section">
+      <div class="header-content">
+        <div class="name" contenteditable="true">YOUR NAME</div>
+        <div class="title" contenteditable="true">Registered Nurse</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span contenteditable="true">your.email@example.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span contenteditable="true">(555) 555-0123</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span contenteditable="true">City, State</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-id-card"></i>
+            <span contenteditable="true">RN License #12345</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-certificate"></i>
+          CERTIFICATIONS
+        </div>
+        <div class="certifications-grid">
+          <div class="cert-card">
+            <div class="cert-name" contenteditable="true">RN License</div>
+            <div class="cert-org" contenteditable="true">State Board of Nursing</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name" contenteditable="true">BLS</div>
+            <div class="cert-org" contenteditable="true">American Heart Association</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name" contenteditable="true">ACLS</div>
+            <div class="cert-org" contenteditable="true">American Heart Association</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name" contenteditable="true">PALS</div>
+            <div class="cert-org" contenteditable="true">American Heart Association</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Registered Nurse - ICU</div>
+          <div class="company-info" contenteditable="true">City General Hospital | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Provided critical care nursing for patients in intensive care unit<br>
+            • Managed ventilators, IV medications, and complex medical equipment<br>
+            • Collaborated with interdisciplinary team to develop patient care plans<br>
+            • Mentored new nurses and participated in quality improvement initiatives
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Staff Nurse - Medical-Surgical</div>
+          <div class="company-info" contenteditable="true">Community Hospital | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Provided comprehensive nursing care for medical-surgical patients<br>
+            • Administered medications, treatments, and patient education<br>
+            • Coordinated with physicians, therapists, and other healthcare professionals<br>
+            • Maintained accurate patient records and documentation
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Bachelor of Science in Nursing</div>
+          <div class="company-info" contenteditable="true">University Name | 2014 - 2018</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.8/4.0 | Dean's List | Nursing Student Association President
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-tools"></i>
+          SKILLS & EXPERTISE
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Clinical Skills</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Patient Assessment</li>
+              <li contenteditable="true">Medication Administration</li>
+              <li contenteditable="true">IV Therapy</li>
+              <li contenteditable="true">Wound Care</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Equipment & Technology</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Ventilator Management</li>
+              <li contenteditable="true">ECG Monitoring</li>
+              <li contenteditable="true">Electronic Health Records</li>
+              <li contenteditable="true">Infusion Pumps</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Specialties</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Critical Care</li>
+              <li contenteditable="true">Emergency Nursing</li>
+              <li contenteditable="true">Pediatric Care</li>
+              <li contenteditable="true">Geriatric Nursing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

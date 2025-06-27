@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 21 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a1a1a;
+      margin: 0;
+      padding: 20px;
+      color: #ffffff;
+    }
+    
+    .header-bar {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #2d2d2d;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .contact-item i {
+      color: #667eea;
+    }
+    
+    .content-section {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding-left: 20px;
+      border-left: 3px solid #667eea;
+    }
+    
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1.1rem;
+      color: #cccccc;
+      margin-bottom: 10px;
+    }
+    
+    .job-description {
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-category {
+      background: #3d3d3d;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .skill-category h4 {
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 5px 0;
+      color: #e0e0e0;
+    }
+    
+    .skill-list li:before {
+      content: "▸";
+      color: #667eea;
+      margin-right: 8px;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #667eea;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #667eea;
+      background: rgba(102, 126, 234, 0.1);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        background: white;
+      }
+      
+      .header-section {
+        background: #667eea;
+        color: white;
+      }
+      
+      .content-section {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-magic"></i> SmartHire Resume Builder - Template 21</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header-section">
+      <div class="name" contenteditable="true">YOUR NAME</div>
+      <div class="title" contenteditable="true">Software Engineer</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span contenteditable="true">your.email@example.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span contenteditable="true">(555) 555-0123</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span contenteditable="true">City, State</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <span contenteditable="true">linkedin.com/in/yourprofile</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Senior Software Engineer</div>
+          <div class="company-info" contenteditable="true">Tech Company Inc. | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Led development of scalable web applications using React and Node.js<br>
+            • Mentored junior developers and conducted code reviews<br>
+            • Implemented CI/CD pipelines reducing deployment time by 40%<br>
+            • Collaborated with cross-functional teams to deliver high-quality products
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Software Developer</div>
+          <div class="company-info" contenteditable="true">Startup XYZ | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Developed full-stack applications using modern JavaScript frameworks<br>
+            • Optimized database queries improving performance by 60%<br>
+            • Participated in agile development processes and sprint planning
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Bachelor of Science in Computer Science</div>
+          <div class="company-info" contenteditable="true">University Name | 2014 - 2018</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.8/4.0 | Relevant Coursework: Data Structures, Algorithms, Database Systems
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-code"></i>
+          TECHNICAL SKILLS
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Programming Languages</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">JavaScript (ES6+)</li>
+              <li contenteditable="true">Python</li>
+              <li contenteditable="true">Java</li>
+              <li contenteditable="true">SQL</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Frameworks & Libraries</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">React.js</li>
+              <li contenteditable="true">Node.js</li>
+              <li contenteditable="true">Express.js</li>
+              <li contenteditable="true">Django</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Tools & Technologies</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Git & GitHub</li>
+              <li contenteditable="true">Docker</li>
+              <li contenteditable="true">AWS</li>
+              <li contenteditable="true">MongoDB</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-project-diagram"></i>
+          PROJECTS
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">E-commerce Platform</div>
+          <div class="company-info" contenteditable="true">Full-stack web application</div>
+          <div class="job-description" contenteditable="true">
+            Built a complete e-commerce platform using React, Node.js, and MongoDB. Implemented user authentication, payment processing, and admin dashboard.
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Task Management App</div>
+          <div class="company-info" contenteditable="true">React Native mobile application</div>
+          <div class="job-description" contenteditable="true">
+            Developed a cross-platform task management app with real-time synchronization and offline capabilities.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

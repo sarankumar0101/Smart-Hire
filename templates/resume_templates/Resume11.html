@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Templates</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: #f0f0f0;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    iframe {
+      width: 90%;
+      height: 1200px;
+      border: 2px solid #ccc;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Select a Resume Template</h1>
+
+  <button onclick="loadTemplate('template1.html')">Template 1</button>
+  <button onclick="loadTemplate('template2.html')">Template 2</button>
+  <button onclick="loadTemplate('template3.html')">Template 3</button>
+  <button onclick="loadTemplate('template4.html')">Template 4</button>
+
+  <iframe id="templateFrame" src="" style="display:none;"></iframe>
+
+  <script>
+    function loadTemplate(template) {
+      const frame = document.getElementById('templateFrame');
+      frame.src = template;
+      frame.style.display = 'block';
+    }
+  </script>
+
+</body>
+
+</html>

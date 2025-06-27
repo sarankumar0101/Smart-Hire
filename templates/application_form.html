@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - SmartHire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f5f6fa;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .job-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .job-company {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .job-location {
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: #1e3c72;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            color: #666;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="/jobs">Back to Jobs</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Application Form</h1>
+        
+        <div class="job-info">
+            <div class="job-title" id="jobTitle"></div>
+            <div class="job-company" id="jobCompany"></div>
+            <div class="job-location" id="jobLocation"></div>
+        </div>
+        
+        <div class="form-container">
+            <form id="applicationForm" enctype="multipart/form-data">
+                <input type="hidden" id="jobId" name="job_id">
+                
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone_number" name="phone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="current_cgpa">Current CGPA <span class="required">*</span></label>
+                            <input type="text" id="current_cgpa" name="current_cgpa" placeholder="e.g., 8.5" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Experience -->
+                <div class="form-section">
+                    <h3>Skills & Experience</h3>
+                    <div class="form-group">
+                        <label for="skills">Technical Skills <span class="required">*</span></label>
+                        <textarea id="skills" name="skills" placeholder="List your technical skills (e.g., Python, Java, React, etc.)" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Relevant Experience</label>
+                        <textarea id="experience" name="experience" placeholder="Describe your relevant work experience, projects, or internships"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projects">Projects</label>
+                        <textarea id="projects" name="projects" placeholder="Describe any notable projects you've worked on"></textarea>
+                    </div>
+                </div>
+
+                <!-- Motivation -->
+                <div class="form-section">
+                    <h3>Motivation</h3>
+                    <div class="form-group">
+                        <label for="why_interested">Why are you interested in this position? <span class="required">*</span></label>
+                        <textarea id="why_interested" name="why_interested" placeholder="Explain why you want this job and how it aligns with your career goals" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="availability">Availability <span class="required">*</span></label>
+                        <select id="availability" name="availability" required>
+                            <option value="">Select Availability</option>
+                            <option value="Immediate">Immediate</option>
+                            <option value="2 weeks">2 weeks</option>
+                            <option value="1 month">1 month</option>
+                            <option value="2 months">2 months</option>
+                            <option value="3 months">3 months</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Resume Upload -->
+                <div class="form-section">
+                    <h3>Resume Upload</h3>
+                    <div class="form-group">
+                        <div class="file-upload" onclick="document.getElementById('resume').click()">
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx,.txt" required>
+                            <div class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload your resume</p>
+                                <p style="font-size: 12px; color: #999;">Accepted formats: PDF, DOC, DOCX, TXT (Max 16MB)</p>
+                            </div>
+                        </div>
+                        <div id="fileInfo" style="margin-top: 10px; font-size: 14px; color: #666;"></div>
+                    </div>
+                </div>
+
+                <!-- Cover Letter -->
+                <div class="form-section">
+                    <h3>Cover Letter</h3>
+                    <div class="form-group">
+                        <label for="cover_letter">Cover Letter (Optional)</label>
+                        <textarea id="cover_letter" name="cover_letter" placeholder="Write a brief cover letter explaining why you're the best candidate for this position"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
+            </form>
+            
+            <div id="status" class="status"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get job/internship details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobId = urlParams.get('job_id');
+        const internshipId = urlParams.get('internship_id');
+        const jobTitle = urlParams.get('title');
+        const jobCompany = urlParams.get('company');
+        const jobLocation = urlParams.get('location');
+
+        // Display job/internship information
+        if (jobId) {
+            document.getElementById('jobId').value = jobId;
+        } else if (internshipId) {
+            document.getElementById('jobId').value = internshipId;
+        }
+        document.getElementById('jobTitle').textContent = jobTitle;
+        document.getElementById('jobCompany').textContent = jobCompany;
+        document.getElementById('jobLocation').textContent = `📍 ${jobLocation}`;
+
+        // File upload handling
+        document.getElementById('resume').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const fileInfo = document.getElementById('fileInfo');
+            
+            if (file) {
+                fileInfo.textContent = `Selected file: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                fileInfo.style.color = '#28a745';
+            } else {
+                fileInfo.textContent = '';
+            }
+        });
+
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('status');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                const formData = new FormData(this);
+                
+                let url;
+                if (jobId) {
+                    url = `/apply_job/${jobId}`;
+                } else if (internshipId) {
+                    url = `/apply_internship/${internshipId}`;
+                }
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                statusDiv.style.display = 'block';
+                if (result.status === 'success') {
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = result.message;
+                    setTimeout(() => {
+                        window.location.href = '/my_applications';
+                    }, 2000);
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = result.error;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }
+            } catch (error) {
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'An error occurred while submitting your application.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            }
+        });
+    </script>
+</body>
+</html> 

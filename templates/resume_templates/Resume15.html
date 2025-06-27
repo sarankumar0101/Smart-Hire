@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shawn Hughes Resume</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px 40px 30px 40px;
+      background: #fff;
+    }
+    .header {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+    .name-block {
+      flex: 0 0 220px;
+      color: #7a9a01;
+      font-weight: bold;
+      font-size: 2.5em;
+      line-height: 1.1;
+      letter-spacing: 1px;
+    }
+    .contact-block {
+      flex: 1;
+      font-size: 1em;
+      margin-left: 30px;
+      margin-top: 10px;
+      color: #222;
+    }
+    .resume-section {
+      display: flex;
+      margin-bottom: 22px;
+    }
+    .section-title {
+      flex: 0 0 180px;
+      font-weight: bold;
+      color: #7a9a01;
+      text-transform: uppercase;
+      font-size: 1em;
+      letter-spacing: 0.5px;
+      border-right: 3px solid #7a9a01;
+      padding-right: 15px;
+      margin-right: 20px;
+      min-width: 120px;
+    }
+    .section-content {
+      flex: 1;
+      font-size: 1em;
+      color: #222;
+    }
+    .section-content[contenteditable="true"], .contact-block[contenteditable="true"], .name-block[contenteditable="true"] {
+      outline: 1px dashed #cbe5ee;
+      min-height: 1.2em;
+    }
+    .references {
+      display: flex;
+      gap: 40px;
+    }
+    .reference-block {
+      flex: 1;
+    }
+    .reference-name {
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 2px;
+    }
+    .reference-company {
+      color: #7a9a01;
+      font-size: 1em;
+      margin-bottom: 2px;
+    }
+    .reference-phone {
+      font-size: 1em;
+      color: #222;
+    }
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    button {
+      background: #7a9a01;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      min-width: 120px;
+    }
+    button:hover {
+      background: #5c7300;
+    }
+    .no-print {}
+    @media print {
+      .no-print { display: none !important; }
+      .container { box-shadow: none; }
+      body { background: #fff; }
+    }
+    @media (max-width: 700px) {
+      .container { padding: 10px; }
+      .header { flex-direction: column; }
+      .contact-block { margin-left: 0; }
+      .resume-section { flex-direction: column; }
+      .section-title { border-right: none; border-bottom: 2px solid #7a9a01; margin-right: 0; padding-right: 0; margin-bottom: 5px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="resume">
+    <div class="header">
+      <div class="name-block" contenteditable="true">SHAWN<br>HUGHES</div>
+      <div class="contact-block" contenteditable="true">
+        4321 Palm Drive,<br>
+        Ft. Lauderdale, FL 87654<br>
+        shawn@example.com<br>
+        404.555.0144
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">Objective</div>
+      <div class="section-content" contenteditable="true">
+        Creative and detail-oriented floral designer with over 5 years of experience in crafting unique floral arrangements. I'm seeking to leverage my design expertise and customer service skills to bring artistic floral visions to life.
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">Skills & Abilities</div>
+      <div class="section-content" contenteditable="true">
+        Experienced in floral design techniques with strong project management and event planning skills. Excellent in client communication and customer service, proficient in design software, and knowledgeable in floral preservation and sustainable practices.
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">Experience</div>
+      <div class="section-content" contenteditable="true">
+        <b>ANISE FLORISTS</b><br>
+        JAN 20XX – PRESENT<br>
+        Led a team of designers in creating custom floral arrangements for weddings, corporate events, and special occasions, ensuring client satisfaction.
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">Education</div>
+      <div class="section-content" contenteditable="true">
+        <b>CLOVER COLLEGE OF THE ARTS</b><br>
+        JACKSONVILLE, FL | FLORAL DESIGN<br>
+        Graduated with a 3.9 GPA, Dean’s List honoree
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">Communication</div>
+      <div class="section-content" contenteditable="true">
+        Presented floral design concepts and proposals to high-profile clients, receiving excellent feedback for clear, engaging presentations.
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">Leadership</div>
+      <div class="section-content" contenteditable="true">
+        Served as the lead floral designer for over 50 high-profile events, mentoring junior designers and guiding the creative process from concept to completion.
+      </div>
+    </div>
+    <div class="resume-section">
+      <div class="section-title">References</div>
+      <div class="section-content">
+        <div class="references">
+          <div class="reference-block" contenteditable="true">
+            <div class="reference-name">TOMO PETKOVIC</div>
+            <div class="reference-company">ANISE FLORISTS</div>
+            <div class="reference-phone">706.555.0110</div>
+          </div>
+          <div class="reference-block" contenteditable="true">
+            <div class="reference-name">ROBIN ZUPANC</div>
+            <div class="reference-company">ANISE FLORISTS</div>
+            <div class="reference-phone">706.555.0110</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions no-print">
+      <button class="no-print" onclick="window.history.back()">Back</button>
+      <button class="no-print" onclick="downloadPDF()">Download PDF</button>
+    </div>
+  </div>
+  <!-- html2pdf.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('resume');
+      // Hide the buttons for the PDF
+      document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
+      html2pdf().from(element).save().then(() => {
+        // Show the buttons again after PDF is generated
+        document.querySelectorAll('.no-print').forEach(el => el.style.display = '');
+      });
+    }
+  </script>
+</body>
+</html>

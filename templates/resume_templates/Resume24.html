@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 24 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #ff6b6b;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #4ecdc4;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .header-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+    }
+    
+    .content-section {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      color: #ff6b6b;
+      border-bottom: 3px solid #4ecdc4;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border-left: 5px solid #ff6b6b;
+      position: relative;
+    }
+    
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      background: #4ecdc4;
+      border-radius: 50%;
+    }
+    
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ff6b6b;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1.1rem;
+      color: #4ecdc4;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-category {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #ff6b6b;
+    }
+    
+    .skill-category h4 {
+      color: #ff6b6b;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 8px 0;
+      color: #555;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .skill-list li:before {
+      content: "▸";
+      color: #4ecdc4;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .metric-card {
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    
+    .metric-number {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .metric-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #ff6b6b;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #ff6b6b;
+      background: rgba(255, 107, 107, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        background: white;
+      }
+      
+      .header-section {
+        background: #ff6b6b;
+        color: white;
+      }
+      
+      .content-section {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-bullhorn"></i> SmartHire Resume Builder - Template 24</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header-section">
+      <div class="header-content">
+        <div class="name" contenteditable="true">YOUR NAME</div>
+        <div class="title" contenteditable="true">Marketing Manager</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span contenteditable="true">your.email@example.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span contenteditable="true">(555) 555-0123</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span contenteditable="true">City, State</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <span contenteditable="true">linkedin.com/in/yourprofile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-chart-line"></i>
+          KEY METRICS
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-number" contenteditable="true">45%</div>
+            <div class="metric-label">ROI Increase</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number" contenteditable="true">2.5M</div>
+            <div class="metric-label">Revenue Generated</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number" contenteditable="true">150%</div>
+            <div class="metric-label">Lead Growth</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number" contenteditable="true">25+</div>
+            <div class="metric-label">Campaigns Managed</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Senior Marketing Manager</div>
+          <div class="company-info" contenteditable="true">Tech Company Inc. | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Led digital marketing campaigns resulting in 45% increase in ROI and 150% growth in qualified leads<br>
+            • Managed $500K marketing budget across multiple channels including Google Ads, Facebook, and LinkedIn<br>
+            • Developed and executed content marketing strategy that increased organic traffic by 80%<br>
+            • Supervised team of 5 marketing specialists and coordinated with sales and product teams
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Marketing Specialist</div>
+          <div class="company-info" contenteditable="true">Startup XYZ | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Executed social media campaigns across multiple platforms, growing followers by 300%<br>
+            • Created and optimized email marketing campaigns with 25% open rate and 8% click-through rate<br>
+            • Managed Google Ads campaigns with $100K budget, achieving 40% cost reduction<br>
+            • Collaborated with design team to create compelling marketing materials and landing pages
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Master of Business Administration</div>
+          <div class="company-info" contenteditable="true">University Name | 2016 - 2018</div>
+          <div class="job-description" contenteditable="true">
+            Concentration in Marketing | GPA: 3.8/4.0 | Marketing Association President
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-tools"></i>
+          SKILLS & EXPERTISE
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Digital Marketing</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Google Ads & Analytics</li>
+              <li contenteditable="true">Facebook/Instagram Ads</li>
+              <li contenteditable="true">LinkedIn Marketing</li>
+              <li contenteditable="true">Email Marketing</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Content & SEO</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Content Strategy</li>
+              <li contenteditable="true">SEO Optimization</li>
+              <li contenteditable="true">Social Media Management</li>
+              <li contenteditable="true">Copywriting</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Analytics & Tools</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Google Analytics</li>
+              <li contenteditable="true">HubSpot</li>
+              <li contenteditable="true">Mailchimp</li>
+              <li contenteditable="true">Canva</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

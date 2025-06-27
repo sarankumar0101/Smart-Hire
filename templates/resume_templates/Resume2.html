@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 2 - Janna Gardner</title>
+  <link rel="stylesheet" href="airesume.css">
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+    .resume-container {
+      max-width: 850px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .header {
+      background: #eee;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #444;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    ul.tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-left: 0;
+      list-style: none;
+    }
+    ul.tag-list li {
+      background: #ddd;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+    .download-btn, .back-btn {
+      padding: 10px 15px;
+      margin-right: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .download-btn { background-color: #28a745; color: white; }
+    .back-btn { background-color: #dc3545; color: white; }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <div class="header" contenteditable="true">
+      <h1>Janna Gardner</h1>
+      <p>4567 Main Street, Chicago, IL 98052 • (716) 555-0100 • janna@example.com</p>
+    </div>
+    <div class="section" contenteditable="true">
+      <h2>Experience</h2>
+      <p><strong>20XX – PRESENT</strong><br>
+      Human Resources Generalist | Lanna Healthcare Company | Chicago, Illinois<br>
+      Description...</p>
+      <p><strong>JUNE 20XX – AUGUST 20XX</strong><br>
+      Human Resources Intern | Wholeness Healthcare | Boomtown, Ohio<br>
+      Description...</p>
+    </div>
+    <div class="section" contenteditable="true">
+      <h2>Skills</h2>
+      <ul class="tag-list">
+        <li>96 wpm</li>
+        <li>Project Management</li>
+        <li>Team Player</li>
+        <li>Conflict Resolution</li>
+        <li>Data Analytics</li>
+        <li>Public Speaking</li>
+      </ul>
+    </div>
+    <div class="section" contenteditable="true">
+      <h2>Education</h2>
+      <p>MAY 20XX<br>
+      Bachelor of Arts Human Resources Management | Jasper University | Ft. Lauderdale, FL<br>
+      3.8 GPA • Member of university’s Honor Society</p>
+    </div>
+    <div class="section" contenteditable="true">
+      <h2>Activities</h2>
+      <ul class="tag-list">
+        <li>Literature</li>
+        <li>Yoga</li>
+        <li>Skiing</li>
+        <li>Travel</li>
+        <li>Art</li>
+      </ul>
+    </div>
+    <div>
+      <button class="back-btn" onclick="goBack()">Back</button>
+      <button class="download-btn" onclick="downloadResume()">Download</button>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function downloadResume() {
+      const content = document.querySelector('.resume-container').innerText;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'resume.txt';
+      link.click();
+    }
+  </script>
+</body>
+</html>

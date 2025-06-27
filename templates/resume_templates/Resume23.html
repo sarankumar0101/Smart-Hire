@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 23 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #667eea;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 30px;
+    }
+    
+    .name {
+      font-size: 3.5rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+      color: #333;
+      letter-spacing: 2px;
+    }
+    
+    .title {
+      font-size: 1.3rem;
+      color: #667eea;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: #666;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .section-title {
+      font-size: 1.4rem;
+      color: #333;
+      margin-bottom: 25px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .experience-item {
+      margin-bottom: 30px;
+    }
+    
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    
+    .job-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .company-info {
+      font-size: 1rem;
+      color: #667eea;
+      font-weight: 500;
+    }
+    
+    .job-date {
+      font-size: 0.9rem;
+      color: #999;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    .education-item {
+      margin-bottom: 25px;
+    }
+    
+    .degree {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    
+    .school-info {
+      font-size: 1rem;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .skill-category {
+      margin-bottom: 20px;
+    }
+    
+    .skill-category h4 {
+      color: #667eea;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 3px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    
+    .skill-list li:before {
+      content: "•";
+      color: #667eea;
+      margin-right: 8px;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #667eea;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #667eea;
+      background: rgba(102, 126, 234, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-briefcase"></i> SmartHire Resume Builder - Template 23</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header">
+      <div class="name" contenteditable="true">YOUR NAME</div>
+      <div class="title" contenteditable="true">Executive Director</div>
+      <div class="contact-info">
+        <span contenteditable="true">your.email@example.com</span>
+        <span contenteditable="true">(555) 555-0123</span>
+        <span contenteditable="true">City, State</span>
+        <span contenteditable="true">linkedin.com/in/yourprofile</span>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Professional Experience</div>
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title" contenteditable="true">Executive Director</div>
+          <div class="job-date" contenteditable="true">2020 - Present</div>
+        </div>
+        <div class="company-info" contenteditable="true">Non-Profit Organization</div>
+        <div class="job-description" contenteditable="true">
+          • Led strategic planning and organizational development initiatives, resulting in 40% growth in program reach<br>
+          • Managed $2M annual budget and secured $500K in new funding through grant writing and donor relations<br>
+          • Supervised team of 15 staff members and implemented performance management systems<br>
+          • Established partnerships with key stakeholders and community organizations
+        </div>
+      </div>
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title" contenteditable="true">Program Manager</div>
+          <div class="job-date" contenteditable="true">2018 - 2020</div>
+        </div>
+        <div class="company-info" contenteditable="true">Community Foundation</div>
+        <div class="job-description" contenteditable="true">
+          • Managed multiple community development programs with $1.5M budget<br>
+          • Coordinated with government agencies and community partners<br>
+          • Developed and implemented program evaluation frameworks<br>
+          • Led team of 8 program coordinators and support staff
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="education-item">
+        <div class="degree" contenteditable="true">Master of Business Administration</div>
+        <div class="school-info" contenteditable="true">University Name</div>
+        <div class="job-date" contenteditable="true">2016 - 2018</div>
+      </div>
+      <div class="education-item">
+        <div class="degree" contenteditable="true">Bachelor of Arts in Public Administration</div>
+        <div class="school-info" contenteditable="true">University Name</div>
+        <div class="job-date" contenteditable="true">2012 - 2016</div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Core Competencies</div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4>Leadership</h4>
+          <ul class="skill-list">
+            <li contenteditable="true">Strategic Planning</li>
+            <li contenteditable="true">Team Management</li>
+            <li contenteditable="true">Change Management</li>
+            <li contenteditable="true">Decision Making</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h4>Financial Management</h4>
+          <ul class="skill-list">
+            <li contenteditable="true">Budget Planning</li>
+            <li contenteditable="true">Grant Writing</li>
+            <li contenteditable="true">Financial Analysis</li>
+            <li contenteditable="true">Fund Development</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h4>Communication</h4>
+          <ul class="skill-list">
+            <li contenteditable="true">Public Speaking</li>
+            <li contenteditable="true">Stakeholder Relations</li>
+            <li contenteditable="true">Board Presentations</li>
+            <li contenteditable="true">Media Relations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

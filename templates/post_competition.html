@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Competition - SmartHire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f5f6fa;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #2e7d32, #388e3c);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .required {
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">SmartHire</div>
+        <div class="nav-links">
+            <a href="/admin_dashboard">Dashboard</a>
+            <a href="/post_job">Post Job</a>
+            <a href="/post_internship">Post Internship</a>
+            <a href="/post_competition">Post Competition</a>
+            <a href="/manage_applications">Manage Applications</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Post New Competition</h1>
+            
+            <form id="competitionForm">
+                <div class="form-group">
+                    <label for="title">Competition Title <span class="required">*</span></label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="organizer">Organizer <span class="required">*</span></label>
+                    <input type="text" id="organizer" name="organizer" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category <span class="required">*</span></label>
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Science">Science</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description <span class="required">*</span></label>
+                    <textarea id="description" name="description" required placeholder="Describe the competition, its objectives, and what participants will be doing..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="prize_pool">Prize Pool</label>
+                    <input type="text" id="prize_pool" name="prize_pool" placeholder="e.g., ₹50,000, Internship Opportunity, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="start_date">Start Date & Time <span class="required">*</span></label>
+                    <input type="datetime-local" id="start_date" name="start_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="end_date">End Date & Time <span class="required">*</span></label>
+                    <input type="datetime-local" id="end_date" name="end_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deadline">Registration Deadline <span class="required">*</span></label>
+                    <input type="datetime-local" id="deadline" name="deadline" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="max_participants">Maximum Participants</label>
+                    <input type="number" id="max_participants" name="max_participants" min="1" placeholder="Leave empty for unlimited">
+                </div>
+
+                <div class="form-group">
+                    <label for="eligibility">Eligibility Criteria</label>
+                    <textarea id="eligibility" name="eligibility" placeholder="Who can participate? (e.g., College students, specific courses, etc.)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="rules">Competition Rules</label>
+                    <textarea id="rules" name="rules" placeholder="Rules and guidelines for the competition..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Post Competition</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('competitionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Posting...';
+            submitBtn.disabled = true;
+            
+            // Remove any existing status messages
+            const existingStatus = document.querySelector('.status');
+            if (existingStatus) {
+                existingStatus.remove();
+            }
+            
+            const formData = new FormData(this);
+            
+            fetch('/post_competition', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusDiv = document.createElement('div');
+                statusDiv.className = `status ${data.success ? 'success' : 'error'}`;
+                statusDiv.textContent = data.message;
+                
+                document.getElementById('competitionForm').appendChild(statusDiv);
+                
+                if (data.success) {
+                    // Reset form on success
+                    document.getElementById('competitionForm').reset();
+                    setTimeout(() => {
+                        window.location.href = '/admin_dashboard';
+                    }, 2000);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'An error occurred. Please try again.';
+                
+                document.getElementById('competitionForm').appendChild(statusDiv);
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+        // Set minimum dates for datetime inputs
+        const now = new Date();
+        const nowString = now.toISOString().slice(0, 16);
+        
+        document.getElementById('start_date').min = nowString;
+        document.getElementById('end_date').min = nowString;
+        document.getElementById('deadline').min = nowString;
+        
+        // Update end date minimum when start date changes
+        document.getElementById('start_date').addEventListener('change', function() {
+            document.getElementById('end_date').min = this.value;
+        });
+        
+        // Update deadline maximum when start date changes
+        document.getElementById('start_date').addEventListener('change', function() {
+            document.getElementById('deadline').max = this.value;
+        });
+    </script>
+</body>
+</html> 

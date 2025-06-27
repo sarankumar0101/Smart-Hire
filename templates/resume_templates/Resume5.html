@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume5</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f5f0e6;
+      margin: 0;
+      padding: 0;
+    }
+    .resume {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 900px;
+      margin: 40px auto;
+      background: #eee2c6;
+      padding: 40px;
+      color: #2b2b2b;
+      border-radius: 10px;
+      gap: 20px;
+    }
+    h1 {
+      font-size: 42px;
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+    h2 {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #6b5e4e;
+      border-bottom: 1px solid #6b5e4e;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+    .left, .right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact p, .section p {
+      margin: 5px 0;
+    }
+    .section ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .btn {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin: 0 5px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .back-btn { background-color: #b74f4f; color: #fff; }
+    .download-btn { background-color: #467856; color: #fff; }
+  </style>
+</head>
+<body>
+  <div id="resume" class="resume" contenteditable="true">
+    <div class="left">
+      <div>
+        <h1>VICTORIA BURKE</h1>
+        <div class="contact">
+          <p>Manager</p>
+          <p>interestingsite.com</p>
+          <p>617.555.0123</p>
+          <p>victoria@example.com</p>
+        </div>
+      </div>
+      <div class="section">
+        <h2>OBJECTIVE</h2>
+        <p>To secure a challenging and rewarding position as a restaurant manager...</p>
+      </div>
+      <div class="section">
+        <h2>EDUCATION</h2>
+        <p><strong>Bellows College, NYC</strong><br>Business Management<br>Business Administration</p>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="section">
+        <h2>EXPERIENCE</h2>
+        <p><strong>Title, Company</strong><br>Month 20XX - Month 20XX<br>Lorem ipsum dolor sit amet...</p>
+        <p><strong>Title, Company</strong><br>Month 20XX - Month 20XX<br>Lorem ipsum dolor sit amet...</p>
+        <p><strong>Title, Company</strong><br>Month 20XX - Month 20XX<br>Lorem ipsum dolor sit amet...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="btn back-btn" onclick="goBack()">Back</button>
+    <button class="btn download-btn" onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById("resume");
+      html2pdf().from(element).save("resume.pdf");
+    }
+  </script>
+</body>
+</html>

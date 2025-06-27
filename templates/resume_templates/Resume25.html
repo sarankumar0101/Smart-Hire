@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 25 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #2c3e50;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #34495e;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+    }
+    
+    .sidebar {
+      background: #2c3e50;
+      color: white;
+      padding: 40px 30px;
+    }
+    
+    .profile-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #34495e;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      border: 4px solid #3498db;
+    }
+    
+    .name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .title {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+    
+    .contact-item i {
+      width: 20px;
+      color: #3498db;
+    }
+    
+    .skills-section {
+      margin-bottom: 30px;
+    }
+    
+    .skills-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+    }
+    
+    .skill-item {
+      background: rgba(52, 152, 219, 0.1);
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      border-left: 3px solid #3498db;
+    }
+    
+    .certifications {
+      margin-bottom: 30px;
+    }
+    
+    .cert-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+    }
+    
+    .cert-item {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+    
+    .main-content {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+      color: #3498db;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+    }
+    
+    .job-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1rem;
+      color: #3498db;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .education-item {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #2c3e50;
+    }
+    
+    .degree {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    
+    .school-info {
+      font-size: 1rem;
+      color: #3498db;
+      margin-bottom: 5px;
+    }
+    
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .achievement-card {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      border-top: 3px solid #3498db;
+      text-align: center;
+    }
+    
+    .achievement-number {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    
+    .achievement-label {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #3498db;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #3498db;
+      background: rgba(52, 152, 219, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .resume-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        order: 2;
+      }
+      
+      .main-content {
+        order: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-calculator"></i> SmartHire Resume Builder - Template 25</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="sidebar">
+      <div class="profile-section">
+        <div class="profile-image">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="name" contenteditable="true">YOUR NAME</div>
+        <div class="title" contenteditable="true">Senior Accountant</div>
+      </div>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span contenteditable="true">your.email@example.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span contenteditable="true">(555) 555-0123</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span contenteditable="true">City, State</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <span contenteditable="true">linkedin.com/in/yourprofile</span>
+        </div>
+      </div>
+      
+      <div class="skills-section">
+        <div class="skills-title">TECHNICAL SKILLS</div>
+        <div class="skill-item" contenteditable="true">QuickBooks</div>
+        <div class="skill-item" contenteditable="true">SAP</div>
+        <div class="skill-item" contenteditable="true">Excel (Advanced)</div>
+        <div class="skill-item" contenteditable="true">Oracle</div>
+        <div class="skill-item" contenteditable="true">Financial Modeling</div>
+        <div class="skill-item" contenteditable="true">GAAP</div>
+        <div class="skill-item" contenteditable="true">Tax Preparation</div>
+        <div class="skill-item" contenteditable="true">Audit Procedures</div>
+      </div>
+      
+      <div class="certifications">
+        <div class="cert-title">CERTIFICATIONS</div>
+        <div class="cert-item" contenteditable="true">CPA - State Board</div>
+        <div class="cert-item" contenteditable="true">CMA - IMA</div>
+        <div class="cert-item" contenteditable="true">QuickBooks ProAdvisor</div>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-chart-bar"></i>
+          KEY ACHIEVEMENTS
+        </div>
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-number" contenteditable="true">$2.5M</div>
+            <div class="achievement-label">Cost Savings</div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-number" contenteditable="true">25%</div>
+            <div class="achievement-label">Process Efficiency</div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-number" contenteditable="true">15+</div>
+            <div class="achievement-label">Audits Completed</div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-number" contenteditable="true">100%</div>
+            <div class="achievement-label">Compliance Rate</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          PROFESSIONAL EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Senior Accountant</div>
+          <div class="company-info" contenteditable="true">Financial Services Corp. | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Managed financial reporting for $50M company, ensuring 100% compliance with GAAP standards<br>
+            • Led month-end close process, reducing closing time by 30% through process optimization<br>
+            • Prepared and analyzed financial statements, budgets, and forecasts for executive team<br>
+            • Supervised team of 3 junior accountants and provided training on new accounting software
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Staff Accountant</div>
+          <div class="company-info" contenteditable="true">Accounting Firm LLC | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Prepared tax returns for 50+ individual and business clients annually<br>
+            • Conducted financial audits for small to medium-sized businesses<br>
+            • Maintained client relationships and provided financial consulting services<br>
+            • Utilized QuickBooks and other accounting software for client bookkeeping
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="education-item">
+          <div class="degree" contenteditable="true">Bachelor of Science in Accounting</div>
+          <div class="school-info" contenteditable="true">University Name</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.8/4.0 | Dean's List | Accounting Society President
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

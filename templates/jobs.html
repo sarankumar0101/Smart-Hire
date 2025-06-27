@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Jobs - SmartHire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f5f6fa;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .job-company {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .job-location {
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .job-type {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .job-salary {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .apply-btn {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .apply-btn:hover {
+            opacity: 0.9;
+        }
+
+        .apply-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .no-jobs {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 50px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">SmartHire</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/resume_tools">Resume Tools</a>
+            {% if session.user_id %}
+                <a href="/my_applications">My Applications</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Available Jobs</h1>
+        
+        {% if jobs %}
+            <div class="jobs-grid">
+                {% for job in jobs %}
+                <div class="job-card">
+                    <div class="job-title">{{ job.title }}</div>
+                    <div class="job-company">{{ job.company }}</div>
+                    <div class="job-location">📍 {{ job.location }}</div>
+                    <div class="job-type">{{ job.job_type }}</div>
+                    {% if job.salary_range %}
+                        <div class="job-salary">💰 {{ job.salary_range }}</div>
+                    {% endif %}
+                    <div class="job-description">{{ job.description }}</div>
+                    <button class="apply-btn" onclick="applyForJob({{ job.id }}, '{{ job.title }}', '{{ job.company }}', '{{ job.location }}')">
+                        Apply Now
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-jobs">
+                <p>No jobs available at the moment. Check back later!</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Apply for Job</h2>
+            <form id="applicationForm">
+                <input type="hidden" id="jobId" name="job_id">
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter (Optional)</label>
+                    <textarea id="coverLetter" name="cover_letter" placeholder="Tell us why you're interested in this position..."></textarea>
+                </div>
+                <button type="submit" class="apply-btn">Submit Application</button>
+            </form>
+            <div id="status" class="status" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        function applyForJob(jobId, jobTitle, jobCompany, jobLocation) {
+            {% if not session.user_id %}
+                alert('Please login to apply for jobs.');
+                window.location.href = '/login';
+                return;
+            {% endif %}
+            
+            // Redirect to comprehensive application form
+            const params = new URLSearchParams({
+                job_id: jobId,
+                title: jobTitle,
+                company: jobCompany,
+                location: jobLocation
+            });
+            window.location.href = `/application_form?${params.toString()}`;
+        }
+
+        function closeModal() {
+            document.getElementById('applicationModal').style.display = 'none';
+            document.getElementById('applicationForm').reset();
+            document.getElementById('status').style.display = 'none';
+        }
+
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const jobId = document.getElementById('jobId').value;
+            const coverLetter = document.getElementById('coverLetter').value;
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                const response = await fetch(`/apply_job/${jobId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `cover_letter=${encodeURIComponent(coverLetter)}`
+                });
+                
+                const result = await response.json();
+                
+                statusDiv.style.display = 'block';
+                if (result.status === 'success') {
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = result.message;
+                    setTimeout(() => {
+                        closeModal();
+                        location.reload();
+                    }, 2000);
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = result.error;
+                }
+            } catch (error) {
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'An error occurred while submitting your application.';
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('applicationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html> 

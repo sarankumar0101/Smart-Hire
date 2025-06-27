@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template - Modern Blue</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #c3e3ea;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #c3e3ea;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 5px 0 15px 0;
+      font-weight: normal;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .contact {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .experience {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .exp-column {
+      width: 30%;
+    }
+
+    .skill-bar {
+      background: #fff;
+      border: 1px solid #333;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      position: relative;
+      height: 20px;
+    }
+
+    .skill-fill {
+      background: #333;
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Contact Information -->
+    <div class="contact" contenteditable="true">
+      4567 Main Street<br>
+      City, State 98052<br>
+      (718) 555-0100<br>
+      taylor@example.com
+    </div>
+
+    <!-- Name -->
+    <h1 contenteditable="true">Taylor Phillips</h1>
+
+    <!-- Career Summary -->
+    <h2 contenteditable="true">State your career goals and how they align with the job description...</h2>
+
+    <!-- Experience -->
+    <div class="experience">
+      <div class="exp-column">
+        <h3 contenteditable="true">Design Director</h3>
+        <p contenteditable="true">First Up Consultants<br>20XX - Current</p>
+        <textarea rows="6" placeholder="Summarize key responsibilities..."></textarea>
+      </div>
+      <div class="exp-column">
+        <h3 contenteditable="true">Senior Designer</h3>
+        <p contenteditable="true">Nod Publishing<br>20XX - 20XX</p>
+        <textarea rows="6" placeholder="Summarize key responsibilities..."></textarea>
+      </div>
+      <div class="exp-column">
+        <h3 contenteditable="true">Designer</h3>
+        <p contenteditable="true">Adatum Corporation<br>20XX - 20XX</p>
+        <textarea rows="6" placeholder="Summarize key responsibilities..."></textarea>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <h3 contenteditable="true">Bachelor of Arts in Art & Design</h3>
+      <p contenteditable="true">Jasper University<br>20XX - 20XX</p>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="skill-label"><span contenteditable="true">Creativity</span><span contenteditable="true">9/10</span></div>
+      <div class="skill-bar">
+        <div class="skill-fill" style="width: 90%;"></div>
+      </div>
+
+      <div class="skill-label"><span contenteditable="true">Leadership</span><span contenteditable="true">7/10</span></div>
+      <div class="skill-bar">
+        <div class="skill-fill" style="width: 70%;"></div>
+      </div>
+
+      <div class="skill-label"><span contenteditable="true">Problem Solving</span><span contenteditable="true">10/10</span></div>
+      <div class="skill-bar">
+        <div class="skill-fill" style="width: 100%;"></div>s
+      </div>
+    </div>
+
+    <button onclick="window.history.back()">Back</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+  </div>
+
+  <script>
+    function downloadPDF() {
+      alert("PDF download functionality to be implemented.");
+    }
+  </script>
+
+</body>
+
+</html>

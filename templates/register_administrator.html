@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Administrator Registration - SmartHire</title>
+    <link rel="stylesheet" href="../static/register_administrator.css"/>
+</head>
+<body>
+<nav>
+    <div class="logo">SmartHire</div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/internships.html">Internships</a></li>
+        <li><a href="/jobs.html">Jobs</a></li>
+        <li><a href="/resume_tools">Resume Tools</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+</nav>
+
+<div class="form-container">
+    <h2>Administrator Registration</h2>
+    <form id="adminForm" onsubmit="return validateForm(event)">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your work email">
+        </div>
+
+        <div class="form-group otp-group">
+            <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter OTP">
+            <button type="button" onclick="sendEmailOtp()">Send OTP</button>
+            <button type="button" onclick="verifyEmailOtp()">Verify OTP</button>
+        </div>
+
+        <p id="otpStatusMessage" style="font-size: 0.9rem; margin-top: 8px;"></p>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8"
+                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"
+                   placeholder="Enter your password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+        </div>
+
+        <div class="form-group">
+            <label for="organization">Organization Name</label>
+            <input type="text" id="organization" name="organization" required placeholder="Enter your organization name">
+        </div>
+
+        <div class="form-group">
+            <label for="designation">Designation/Role</label>
+            <select id="designation" name="designation" required>
+                <option value="" disabled selected>Select your role</option>
+                <option value="Recruiter">Recruiter</option>
+                <option value="Event Organizer">Event Organizer</option>
+                <option value="Faculty/Professor">Faculty/Professor</option>
+                <option value="Platform Moderator">Platform Moderator</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="orgWebsite">Organization Website (Optional)</label>
+            <input type="url" id="orgWebsite" name="orgWebsite" placeholder="Enter organization website">
+        </div>
+
+        <div class="form-group">
+            <label for="purpose">Purpose of Registration</label>
+            <select id="purpose" name="purpose" required>
+                <option value="" disabled selected>Select purpose</option>
+                <option value="Host Competitions">Host Competitions</option>
+                <option value="Post Jobs">Post Jobs</option>
+                <option value="Manage Events">Manage Events</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="adminCode">Unique Admin Code (Optional)</label>
+            <input type="text" id="adminCode" name="adminCode" placeholder="Enter admin code if provided">
+        </div>
+
+        <div class="form-group terms">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Register as Administrator</button>
+    </form>
+</div>
+
+<script>
+    let emailVerified = false;
+
+    async function sendEmailOtp() {
+        const email = document.getElementById('email').value;
+        const status = document.getElementById('otpStatusMessage');
+
+        if (!email) {
+            status.textContent = "Please enter your email address.";
+            status.style.color = "red";
+            return;
+        }
+
+        try {
+            const response = await fetch('/send_otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const result = await response.json();
+            status.textContent = result.message;
+            status.style.color = result.status === 'success' ? 'green' : 'red';
+        } catch (error) {
+            status.textContent = "Error sending OTP.";
+            status.style.color = "red";
+        }
+    }
+
+    async function verifyEmailOtp() {
+        const email = document.getElementById('email').value;
+        const otp = document.getElementById('emailOtp').value;
+        const status = document.getElementById('otpStatusMessage');
+
+        if (!otp) {
+            status.textContent = "Please enter the OTP.";
+            status.style.color = "red";
+            return;
+        }
+
+        try {
+            const response = await fetch('/verify_otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, otp })
+            });
+            const result = await response.json();
+
+            status.textContent = result.message;
+            if (result.status === 'success') {
+                emailVerified = true;
+                status.style.color = "green";
+            } else {
+                status.style.color = "red";
+            }
+        } catch (error) {
+            status.textContent = "Error verifying OTP.";
+            status.style.color = "red";
+        }
+    }
+
+    async function validateForm(event) {
+        event.preventDefault();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return false;
+        }
+
+        if (!emailVerified) {
+            alert('Please verify your email address before submitting.');
+            return false;
+        }
+
+        const formData = new FormData(document.getElementById('adminForm'));
+        try {
+            const response = await fetch('/register_administrator_submit', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+            alert(result);
+        } catch (error) {
+            alert('Error submitting form: ' + error.message);
+        }
+
+        return false;
+    }
+
+    function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("show");
+    }
+</script>
+
+</body>
+</html>

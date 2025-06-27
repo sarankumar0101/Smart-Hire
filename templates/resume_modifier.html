@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume Modifier & Analyzer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .loading-spinner {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .loading-spinner.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="bg-light p-5">
+  <div class="container bg-white p-4 rounded shadow">
+    <h2 class="mb-4 text-primary text-center">Resume Modifier & Analyzer</h2>
+    <p class="text-center mb-4">Upload your resume (PDF, DOC, DOCX, or TXT). The AI will analyze and provide a detailed report on strengths, weaknesses, grammar issues, vocabulary mistakes, and suggestions for improvement.</p>
+    <input class="form-control mb-3" type="file" id="resumeFile" accept=".pdf,.doc,.docx,.txt">
+    <button class="btn btn-success mb-3 w-100" onclick="uploadAndAnalyze()">Analyze Resume</button>
+    <div class="loading-spinner" id="loadingSpinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Analyzing...</span>
+      </div>
+      <span class="ms-2">Analyzing your resume, please wait...</span>
+    </div>
+    <div id="results" style="display:none;">
+      <h5>Strengths:</h5>
+      <ul id="strengths" class="list-group mb-3"></ul>
+      <h5>Weaknesses:</h5>
+      <ul id="weaknesses" class="list-group mb-3"></ul>
+      <h5>Suggestions:</h5>
+      <ul id="suggestions" class="list-group mb-3"></ul>
+      <h5>Grammar Issues:</h5>
+      <ul id="grammar" class="list-group mb-3"></ul>
+      <h5>Vocabulary Mistakes:</h5>
+      <ul id="vocab" class="list-group mb-3"></ul>
+    </div>
+  </div>
+  <script>
+    function uploadAndAnalyze() {
+      const fileInput = document.getElementById("resumeFile");
+      const file = fileInput.files[0];
+      if (!file) return alert("Please upload a file first.");
+      document.getElementById("results").style.display = "none";
+      document.getElementById("loadingSpinner").classList.add("active");
+      const formData = new FormData();
+      formData.append("resume", file);
+      fetch("/analyze", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("loadingSpinner").classList.remove("active");
+        if (data.error) return alert("Error: " + data.error);
+        ['strengths', 'weaknesses', 'suggestions', 'grammar', 'vocab'].forEach(section => {
+          const ul = document.getElementById(section);
+          ul.innerHTML = "";
+          (data[section] || []).forEach(item => {
+            const li = document.createElement("li");
+            li.className = "list-group-item";
+            li.textContent = item;
+            ul.appendChild(li);
+          });
+        });
+        document.getElementById("results").style.display = "block";
+      })
+      .catch(err => {
+        document.getElementById("loadingSpinner").classList.remove("active");
+        console.error(err);
+        alert("Something went wrong! " + err.message);
+      });
+    }
+  </script>
+</body>
+</html>

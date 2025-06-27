@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template - Lisandro Milanesi</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .left, .right {
+      box-sizing: border-box;
+      padding: 20px;
+    }
+    .left {
+      flex: 1 1 250px;
+      min-width: 250px;
+      max-width: 300px;
+      border-right: 1px solid #eee;
+    }
+    .right {
+      flex: 2 1 500px;
+      min-width: 300px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0;
+      letter-spacing: 2px;
+      color: #222;
+    }
+    .contact {
+      font-size: 0.95em;
+      margin-bottom: 30px;
+      color: #666;
+    }
+    h2 {
+      font-size: 1.2em;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #2b2b2b;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+    }
+    ul {
+      padding-left: 18px;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    li {
+      margin-bottom: 6px;
+      font-size: 1em;
+    }
+    .section {
+      margin-bottom: 25px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    [contenteditable="true"] {
+      border-bottom: 1px dashed #bbb;
+      padding: 2px 4px;
+      min-width: 40px;
+      display: inline-block;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        padding: 10px;
+      }
+      .left, .right {
+        max-width: 100%;
+        border: none;
+        padding: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1 contenteditable="true">LISANDRO<br>MILANESI</h1>
+      <div class="contact">
+        <div contenteditable="true">716-555-0100</div>
+        <div contenteditable="true">www.interestingsite.com</div>
+        <div contenteditable="true">lisandro@example.com</div>
+      </div>
+      <div class="section">
+        <h2>ACTIVITIES AND INTERESTS</h2>
+        <ul contenteditable="true">
+          <li>Surfing</li>
+          <li>Scuba diving</li>
+          <li>Snorkeling</li>
+          <li>Craft beer</li>
+          <li>Travel</li>
+          <li>Great food</li>
+          <li>Food Pantry Volunteer</li>
+        </ul>
+      </div>
+      <div class="section">
+        <h2>KEY SKILLS</h2>
+        <ul contenteditable="true">
+          <li>Budget management</li>
+          <li>Excellent listener</li>
+          <li>Friendly, courteous, &amp; service oriented</li>
+          <li>Poised under pressure</li>
+          <li>Staff training &amp; coaching</li>
+          <li>Recruiting &amp; hiring talent</li>
+          <li>Quality assurance</li>
+          <li>Solid written &amp; verbal communicator</li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+      <div class="section">
+        <h2>PROFILE</h2>
+        <textarea rows="6" placeholder="Write a brief profile or summary here..."></textarea>
+      </div>
+      <div class="section">
+        <h2>WORK EXPERIENCE</h2>
+        <textarea rows="7" placeholder="Job Title - Company Name\nDates\n- Responsibility 1\n- Responsibility 2"></textarea>
+      </div>
+      <div class="section">
+        <h2>EDUCATION</h2>
+        <textarea rows="3" placeholder="Degree - Institution Name\nYear of Graduation"></textarea>
+      </div>
+      <button onclick="window.history.back()">Back</button>
+      <button onclick="downloadPDF()">Download PDF</button>
+    </div>
+  </div>
+  <script>
+    function downloadPDF() {
+      alert("PDF download functionality to be implemented.");
+    }
+  </script>
+</body>
+</html>

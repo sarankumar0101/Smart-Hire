@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - SmartHire</title>
+  <link rel="stylesheet" href="../static/Register.css">
+</head>
+<body>
+   <nav class="navbar">
+    <div class="logo">SmartHire</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="internships.html">Internships</a></li>
+      <li><a href="jobs.html">Jobs</a></li>
+      <li><a href="/resume_tools">Resume Tools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="/login">Login</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+
+  <main class="container">
+    <h2>Choose Registration Type</h2>
+    <div class="button-group">
+      <a href="/register_student.html">Register as Student</a>
+      <a href="/register_administrator.html">Register as Administrator</a>
+    </div>
+  </main>
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+  </script>
+</body>
+</html>

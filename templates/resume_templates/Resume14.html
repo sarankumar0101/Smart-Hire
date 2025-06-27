@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geometric Resume - Print to PDF</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      padding: 40px 40px 30px 40px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .name {
+      font-size: 2.3em;
+      font-weight: bold;
+      margin-bottom: 0;
+      letter-spacing: 1px;
+    }
+
+    .contact {
+      font-size: 1em;
+      color: #444;
+      margin-bottom: 25px;
+      margin-top: 5px;
+    }
+
+    .main {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .left, .right {
+      flex: 1 1 350px;
+      min-width: 300px;
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      color: #222;
+      font-size: 1.15em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-text, .edu-text, .exp-desc {
+      width: 100%;
+      border: none;
+      background: transparent;
+      resize: none;
+      font-family: inherit;
+      color: #222;
+      outline: none;
+      margin-bottom: 0;
+      font-size: 1em;
+    }
+
+    .exp-entry {
+      margin-bottom: 18px;
+    }
+
+    .exp-dates {
+      font-size: 0.98em;
+      color: #444;
+      margin-bottom: 2px;
+      font-style: italic;
+    }
+
+    .exp-title {
+      font-weight: bold;
+      color: #1565c0;
+      font-size: 1.05em;
+      margin-bottom: 2px;
+    }
+
+    .skills-list {
+      margin: 0 0 0 18px;
+      padding: 0;
+      font-size: 1em;
+    }
+
+    .skills-list li {
+      color: #1565c0;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      background: #1565c0;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background: #003c8f;
+    }
+
+    @media (max-width: 900px) {
+      .container { padding: 20px 5vw; }
+      .main { flex-direction: column; gap: 0; }
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: #fff; }
+      .no-print { display: none !important; }
+      .container { box-shadow: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="name" contenteditable="true">Yuuri Tanaka</div>
+      <div class="contact" contenteditable="true">4567 Main Street<br>City, State 98052<br>(718) 555-0100<br>yuuri@example.com</div>
+    </div>
+    <div class="main">
+      <div class="left">
+        <div class="section">
+          <div class="section-title">Profile</div>
+          <textarea class="profile-text" rows="3" placeholder="A brief profile statement that aligns with the job description..."></textarea>
+        </div>
+        <div class="section">
+          <div class="section-title">Education</div>
+          <textarea class="edu-text" rows="2" placeholder="B.A. in Art & Design, Jasper University\nState your degree, school, and relevant skills..."></textarea>
+        </div>
+        <div class="section">
+          <div class="section-title">Skills</div>
+          <ul class="skills-list" contenteditable="true">
+            <li>Creativity</li>
+            <li>Leadership</li>
+            <li>Organization</li>
+            <li>Problem Solving</li>
+            <li>Teamwork</li>
+          </ul>
+        </div>
+      </div>
+      <div class="right">
+        <div class="section">
+          <div class="exp-entry">
+            <div class="exp-dates" contenteditable="true">20XX – 20XX</div>
+            <div class="exp-title" contenteditable="true">Design Director – First Up Consultants</div>
+            <textarea class="exp-desc" rows="3" placeholder="Describe your role and accomplishments..."></textarea>
+          </div>
+          <div class="exp-entry">
+            <div class="exp-dates" contenteditable="true">20XX – 20XX</div>
+            <div class="exp-title" contenteditable="true">Senior Designer – Nod Publishing</div>
+            <textarea class="exp-desc" rows="3" placeholder="Describe your responsibilities and contributions..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions no-print">
+      <button onclick="window.history.back()">Back</button>
+      <button onclick="window.print()">Download PDF</button>
+    </div>
+  </div>
+</body>
+</html>

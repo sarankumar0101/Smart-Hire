@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder - SmartHire</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-filter-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            color: #333;
+        }
+
+        .filter-select {
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .template-count {
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .template-preview {
+            height: 200px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .template-info {
+            padding: 1.5rem;
+        }
+
+        .template-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .template-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .use-template-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .use-template-btn:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">SmartHire</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/resume_tools">Resume Tools</a></li>
+                <li><a href="/jobs">Jobs</a></li>
+                <li><a href="/internships">Internships</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-magic"></i> AI Resume Builder</h1>
+            <p>Choose from 50 professional templates and create your perfect resume</p>
+        </div>
+
+        <div class="search-filter-section">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search templates...">
+                <select class="filter-select">
+                    <option value="">Filter by category</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Creative">Creative</option>
+                    <option value="Executive">Executive</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Education">Education</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Design">Design</option>
+                    <option value="Consulting">Consulting</option>
+                    <option value="Product">Product</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Research">Research</option>
+                    <option value="Project">Project</option>
+                    <option value="Customer Success">Customer Success</option>
+                    <option value="Business Analyst">Business Analyst</option>
+                    <option value="Quality Assurance">Quality Assurance</option>
+                    <option value="DevOps">DevOps</option>
+                    <option value="UX">UX</option>
+                    <option value="Content">Content</option>
+                    <option value="Event">Event</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Fitness">Fitness</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Environmental">Environmental</option>
+                    <option value="Non-Profit">Non-Profit</option>
+                    <option value="Entrepreneur">Entrepreneur</option>
+                </select>
+            </div>
+            <p class="template-count">0 templates found</p>
+        </div>
+
+        <div class="templates-grid" id="templatesGrid">
+            <!-- Templates will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Template data with categories
+        const templates = [
+            { id: 1, name: "Professional Classic", description: "Clean and traditional design perfect for corporate positions", category: "Professional" },
+            { id: 2, name: "Modern Minimalist", description: "Sleek and contemporary design with clean typography", category: "Professional" },
+            { id: 3, name: "Creative Portfolio", description: "Bold and artistic design for creative professionals", category: "Creative" },
+            { id: 4, name: "Executive Elegant", description: "Sophisticated design for senior-level positions", category: "Executive" },
+            { id: 5, name: "Tech Professional", description: "Modern design optimized for technology roles", category: "Tech" },
+            { id: 6, name: "Creative Designer", description: "Colorful and dynamic design for creative fields", category: "Creative" },
+            { id: 7, name: "Business Professional", description: "Traditional business format with modern touches", category: "Professional" },
+            { id: 8, name: "Minimalist Clean", description: "Ultra-clean design with maximum readability", category: "Professional" },
+            { id: 9, name: "Modern Executive", description: "Contemporary design for executive positions", category: "Executive" },
+            { id: 10, name: "Teaching Professional", description: "Specialized design for education professionals", category: "Education" },
+            { id: 11, name: "Simple Clean", description: "Straightforward design with excellent readability", category: "Professional" },
+            { id: 12, name: "Professional Standard", description: "Standard professional format with clean layout", category: "Professional" },
+            { id: 13, name: "Modern Creative", description: "Contemporary design with creative elements", category: "Creative" },
+            { id: 14, name: "Classic Professional", description: "Timeless professional design", category: "Professional" },
+            { id: 15, name: "Green Professional", description: "Professional design with green accent colors", category: "Professional" },
+            { id: 16, name: "Blue Modern", description: "Modern design with blue color scheme", category: "Professional" },
+            { id: 17, name: "Simple Professional", description: "Simple yet professional design", category: "Professional" },
+            { id: 18, name: "Creative Modern", description: "Modern design with creative flair", category: "Creative" },
+            { id: 19, name: "Professional Elegant", description: "Elegant professional design", category: "Professional" },
+            { id: 20, name: "Modern Professional", description: "Contemporary professional design", category: "Professional" },
+            { id: 21, name: "Tech Startup", description: "Modern tech-focused design for startup environments", category: "Tech" },
+            { id: 22, name: "Creative Artist", description: "Artistic design perfect for creative professionals", category: "Creative" },
+            { id: 23, name: "Executive Board", description: "Board-level executive design with sophisticated styling", category: "Executive" },
+            { id: 24, name: "Marketing Pro", description: "Dynamic design optimized for marketing professionals", category: "Marketing" },
+            { id: 25, name: "Finance Executive", description: "Professional design tailored for finance roles", category: "Finance" },
+            { id: 26, name: "Healthcare Professional", description: "Clean design suitable for healthcare positions", category: "Healthcare" },
+            { id: 27, name: "Education Leader", description: "Academic design for education leadership roles", category: "Education" },
+            { id: 28, name: "Sales Professional", description: "Dynamic design for sales and business development", category: "Sales" },
+            { id: 29, name: "Data Scientist", description: "Modern design for data science and analytics roles", category: "Data Science" },
+            { id: 30, name: "Design Portfolio", description: "Creative portfolio design for designers and artists", category: "Design" },
+            { id: 31, name: "Consulting Pro", description: "Professional design for consulting positions", category: "Consulting" },
+            { id: 32, name: "Product Manager", description: "Modern design for product management roles", category: "Product" },
+            { id: 33, name: "Operations Executive", description: "Executive design for operations leadership", category: "Operations" },
+            { id: 34, name: "Human Resources", description: "Professional HR design with people-focused styling", category: "Human Resources" },
+            { id: 35, name: "Legal Professional", description: "Traditional design suitable for legal positions", category: "Legal" },
+            { id: 36, name: "Research Scientist", description: "Academic design for research and development roles", category: "Research" },
+            { id: 37, name: "Project Manager", description: "Professional design for project management positions", category: "Project" },
+            { id: 38, name: "Customer Success", description: "Dynamic design for customer success and support roles", category: "Customer Success" },
+            { id: 39, name: "Business Analyst", description: "Analytical design for business analysis positions", category: "Business Analyst" },
+            { id: 40, name: "Quality Assurance", description: "Professional design for QA and testing roles", category: "Quality Assurance" },
+            { id: 41, name: "DevOps Engineer", description: "Modern tech design for DevOps and infrastructure roles", category: "DevOps" },
+            { id: 42, name: "UX Designer", description: "Creative design for user experience professionals", category: "UX" },
+            { id: 43, name: "Content Creator", description: "Dynamic design for content and media professionals", category: "Content" },
+            { id: 44, name: "Event Planner", description: "Creative design for event management and planning", category: "Event" },
+            { id: 45, name: "Real Estate Pro", description: "Professional design for real estate professionals", category: "Real Estate" },
+            { id: 46, name: "Fitness Professional", description: "Dynamic design for fitness and wellness roles", category: "Fitness" },
+            { id: 47, name: "Travel Consultant", description: "Creative design for travel and tourism professionals", category: "Travel" },
+            { id: 48, name: "Environmental Specialist", description: "Professional design for environmental roles", category: "Environmental" },
+            { id: 49, name: "Non-Profit Leader", description: "Mission-driven design for non-profit leadership", category: "Non-Profit" },
+            { id: 50, name: "Entrepreneur", description: "Dynamic design for entrepreneurs and business owners", category: "Entrepreneur" }
+        ];
+
+        let filteredTemplates = [...templates];
+
+        function filterTemplates() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const categoryFilter = document.querySelector('.filter-select').value;
+            
+            filteredTemplates = templates.filter(template => {
+                const matchesSearch = template.name.toLowerCase().includes(searchTerm) || 
+                                    template.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || template.category === categoryFilter;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderTemplates();
+            updateTemplateCount();
+        }
+
+        function updateTemplateCount() {
+            const countElement = document.querySelector('.template-count');
+            countElement.textContent = `${filteredTemplates.length} template${filteredTemplates.length !== 1 ? 's' : ''} found`;
+        }
+
+        function renderTemplates() {
+            const grid = document.getElementById('templatesGrid');
+            grid.innerHTML = filteredTemplates.map(template => `
+                <div class="template-card" onclick="selectTemplate(${template.id})">
+                    <div class="template-preview">
+                        <div class="template-number">Template ${template.id}</div>
+                        <i class="fas fa-file-alt" style="font-size: 3rem; color: #667eea;"></i>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-title">${template.name}</div>
+                        <div class="template-description">${template.description}</div>
+                        <div style="color: #667eea; font-size: 0.9rem; margin-bottom: 1rem; font-weight: 500;">${template.category}</div>
+                        <button class="use-template-btn">
+                            <i class="fas fa-edit"></i> Use This Template
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectTemplate(templateId) {
+            window.location.href = `/resume_builder/template/${templateId}`;
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTemplates();
+            updateTemplateCount();
+            
+            // Add event listeners for search and filter
+            document.querySelector('.search-input').addEventListener('input', filterTemplates);
+            document.querySelector('.filter-select').addEventListener('change', filterTemplates);
+        });
+    </script>
+</body>
+</html>

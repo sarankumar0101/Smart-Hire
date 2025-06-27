@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Tools - SmartHire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f1f4f9, #dff1ff);
+      color: #333;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #ffd700;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        width: 180px;
+        display: none;
+        flex-direction: column;
+        animation: slideDown 0.3s ease-in-out;
+        z-index: 1000;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+        padding: 12px 20px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links li:hover {
+        background-color: #f9f9f9;
+      }
+
+      .nav-links li a {
+        color: #333;
+        font-weight: 600;
+        display: block;
+        width: 100%;
+      }
+
+      .hamburger {
+        display: flex;
+        z-index: 1001;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Heading */
+    .center-heading {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: green;
+    }
+
+    /* Services section */
+    .services-section {
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+
+    .service-card {
+      text-align: center;
+      padding: 40px;
+      border: 2px solid #dee2e6;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: white;
+    }
+
+    .service-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .light-green {
+      background-color: #d4edda;
+    }
+
+    .light-pink {
+      background-color: #f8d7da;
+    }
+
+    .light-blue {
+      background-color: #d1ecf1;
+    }
+
+    .btn-custom {
+      background-color: #1e3c72;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn-custom:hover {
+      background-color: #ff8c00;
+    }
+
+    .service-description {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin: 20px 0;
+      color: #555;
+    }
+
+    .service-icon {
+      font-size: 4rem;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .center-heading {
+        font-size: 2rem;
+      }
+
+      .row.g-4 {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .service-card {
+        width: 90%;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+{% if not session.user_id or session.user_type != 'student' %}
+  <script>
+    alert("You must be logged in as a student to access Resume Tools.");
+    window.location.href = "/login";
+  </script>
+{% endif %}
+
+<nav class="navbar">
+    <div class="logo">SmartHire</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="internships.html">Internships</a></li>
+      <li><a href="jobs.html">Jobs</a></li>
+      <li><a href="/Register">Register</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="/login">Login</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+
+
+  <!-- Centered Heading --> 
+  <h1 class="center-heading">Resume Tools</h1>
+
+  <!-- Services Section -->
+  <div class="container services-section">
+    <div class="row g-4" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+      <!-- Box 1 -->
+      <div class="col-md-4">
+        <div class="service-card light-green">
+          <div>
+            <h3>AI Resume Builder</h3>
+            <p class="service-description">Easily create professional resumes<br>with AI-powered templates.</p>
+            <i class="fas fa-robot service-icon"></i>
+          </div>
+          <button class="btn btn-custom" onclick="window.location.href='/resume_builder'">Get Started</button>
+        </div>
+      </div>
+
+      <!-- Box 2 -->
+      <div class="col-md-4">
+        <div class="service-card light-pink">
+          <div>
+            <h3>Free ATS Score Checker</h3>
+            <p class="service-description">Check your resume's ATS score<br>for better job shortlisting.</p>
+            <i class="fas fa-chart-line service-icon"></i>
+          </div>
+          <button class="btn btn-custom" disabled title="Coming Soon">Coming Soon</button>
+        </div>
+      </div>
+
+      <!-- Box 3 -->
+      <div class="col-md-4">
+        <div class="service-card light-blue">
+          <div>
+            <h3>Resume Modifier</h3>
+            <p class="service-description">Easily update and improve<br>your existing resumes.</p>
+            <i class="fas fa-edit service-icon"></i>
+          </div>
+          <button class="btn btn-custom" onclick="window.location.href='/resume_modifier'">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+  </script>
+</body>
+</html>

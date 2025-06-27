@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template 6</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+    .resume {
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+      margin: 50px auto;
+      background: #f2ebe5;
+      padding: 30px 40px;
+      color: #333;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 5px;
+      color: #4a3b30;
+    }
+    h2 {
+      color: #6c5649;
+      border-bottom: 1px solid #6c5649;
+      padding-bottom: 3px;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 15px;
+      font-size: 15px;
+      margin: 0 5px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .back-btn { background-color: #984848; color: #fff; }
+    .download-btn { background-color: #3f7c56; color: #fff; }
+  </style>
+</head>
+<body>
+  <div id="resume" class="resume" contenteditable="true">
+    <h1>FRANKLIN HOWARD</h1>
+    <p>Digital Marketing Specialist | www.portfolio.com | franklin@example.com | 555-123-4567</p>
+
+    <div class="section">
+      <h2>PROFILE</h2>
+      <p>Creative and analytical marketing professional with 6+ years of experience specializing in SEO, PPC, and content strategy...</p>
+    </div>
+
+    <div class="section">
+      <h2>EXPERIENCE</h2>
+      <p><strong>Digital Marketing Manager</strong><br>Company Name | Month 20XX – Present<br>Description...</p>
+      <p><strong>SEO Specialist</strong><br>Company Name | Month 20XX – Month 20XX<br>Description...</p>
+      <p><strong>Content Marketing Intern</strong><br>Company Name | Month 20XX – Month 20XX<br>Description...</p>
+    </div>
+
+    <div class="section">
+      <h2>SKILLS</h2>
+      <ul>
+        <li>SEO & SEM</li>
+        <li>Google Analytics & Ads</li>
+        <li>Social Media Strategy</li>
+        <li>Content Marketing</li>
+        <li>Email Campaigns</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>EDUCATION</h2>
+      <p><strong>Jasper University</strong> | Bachelor of Marketing | Graduated 20XX</p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="btn back-btn" onclick="goBack()">Back</button>
+    <button class="btn download-btn" onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById("resume");
+      html2pdf().from(element).save("resume.pdf");
+    }
+  </script>
+</body>
+</html>

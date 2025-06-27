@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - SmartHire</title>
+  <link rel="stylesheet" href="../static/login.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <!-- Logo image removed as requested -->
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="/internships">Internships</a>
+      <a href="/jobs">Jobs</a>
+      <a href="/resume_tools">Resume Tools</a>
+      <a href="/about">About</a>
+      <a href="/Register">Register</a>
+    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+
+  <div class="container">
+    <h2>Login</h2>
+
+    <!-- Back Arrow -->
+    <div id="backArrow" onclick="goBack()">← Back</div>
+
+    <!-- Role Selection Buttons -->
+    <div class="tab-buttons">
+      <button onclick="showForm('student')">Login as Student</button>
+      <button onclick="showForm('admin')">Login as Administrator</button>
+    </div>
+
+    <!-- Student Login Form -->
+    <form class="tab" id="studentTab" action="/login_submit" method="POST" style="display: none;">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <input type="hidden" name="role" value="student" />
+      <input type="hidden" name="next" id="studentNext" value="{{ next|default('') }}" />
+      <div class="remember-me">
+        <input type="checkbox" id="studentRememberMe" name="remember_me" value="true" />
+        <label for="studentRememberMe">Remember me</label>
+      </div>
+      <div class="link-row">
+        <a href="/forgot_password">Forgot Password?</a>
+        <a href="/Register">Register</a>
+      </div>
+      <button class="btn-green" type="submit">Login</button>
+    </form>
+
+    <!-- Admin Login Form -->
+    <form class="tab" id="adminTab" action="/login_submit" method="POST" style="display: none;">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <input type="hidden" name="role" value="admin" />
+      <input type="hidden" name="next" id="adminNext" value="{{ next|default('') }}" />
+      <div class="remember-me">
+        <input type="checkbox" id="adminRememberMe" name="remember_me" value="true" />
+        <label for="adminRememberMe">Remember me</label>
+      </div>
+      <div class="link-row">
+        <a href="/forgot_password">Forgot Password?</a>
+        <a href="/Register">Register</a>
+      </div>
+      <button class="btn-green" type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    function showForm(role) {
+      document.querySelector(".tab-buttons").style.display = "none";
+      document.getElementById("backArrow").style.display = "block";
+
+      document.getElementById("studentTab").style.display = role === "student" ? "block" : "none";
+      document.getElementById("adminTab").style.display = role === "admin" ? "block" : "none";
+    }
+
+    function goBack() {
+      document.querySelector(".tab-buttons").style.display = "flex";
+      document.getElementById("backArrow").style.display = "none";
+
+      document.getElementById("studentTab").style.display = "none";
+      document.getElementById("adminTab").style.display = "none";
+    }
+
+    // Handle form submissions
+    document.getElementById("studentTab").addEventListener("submit", handleFormSubmit);
+    document.getElementById("adminTab").addEventListener("submit", handleFormSubmit);
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const formData = new FormData(form);
+      
+      // Show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = "Logging in...";
+      submitBtn.disabled = true;
+      
+      // Remove any existing error messages
+      const existingError = form.querySelector('.error-message');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      fetch('/login_submit', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Redirect on success
+          window.location.href = data.redirect;
+        } else {
+          // Show error message
+          showError(form, data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Login error:', error);
+        showError(form, 'Network error. Please try again.');
+      })
+      .finally(() => {
+        // Reset button state
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    }
+
+    function showError(form, message) {
+      // Remove any existing error messages
+      const existingError = form.querySelector('.error-message');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      // Create error message element
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.style.cssText = 'color: #dc2626; background-color: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;';
+      errorDiv.textContent = message;
+      
+      // Insert error message at the top of the form
+      const firstInput = form.querySelector('input');
+      form.insertBefore(errorDiv, firstInput);
+    }
+
+    document.getElementById("hamburger").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("show");
+    });
+  </script>
+</body>
+</html>

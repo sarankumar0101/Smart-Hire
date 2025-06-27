@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template - Vance Rey Style</title>
+  <style>
+    body {
+      font-family: 'Arial', 'Georgia', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #222;
+    }
+    .resume-container {
+      max-width: 950px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      padding: 0 0 36px 0;
+      overflow: hidden;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 36px 48px 18px 48px;
+      background: #f2f2f2;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 32px;
+      font-size: 2.2rem;
+      color: #888;
+    }
+    .header-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .header-title h1[contenteditable] {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+      outline: none;
+    }
+    .header-title h2[contenteditable] {
+      font-size: 1.3rem;
+      margin: 0;
+      font-weight: 400;
+      color: #888;
+      letter-spacing: 1px;
+      outline: none;
+    }
+    .main-content {
+      display: flex;
+      padding: 36px 48px 0 48px;
+      gap: 36px;
+    }
+    .left-col {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .right-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .section {
+      margin-bottom: 0;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      color: #222;
+    }
+    .section-content[contenteditable] {
+      outline: none;
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 8px;
+    }
+    .profile-text {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+    .exp-row {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+    .exp-date {
+      flex: 0 0 160px;
+      color: #444;
+      font-size: 0.98rem;
+    }
+    .exp-details {
+      flex: 1;
+    }
+    .exp-title {
+      font-weight: bold;
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+    .exp-org {
+      font-style: italic;
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+    .exp-desc {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 0;
+    }
+    .edu-row {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+    .edu-date {
+      flex: 0 0 160px;
+      color: #444;
+      font-size: 0.98rem;
+    }
+    .edu-details {
+      flex: 1;
+    }
+    .edu-title {
+      font-weight: bold;
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+    .edu-meta {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 2px;
+    }
+    .skills-list {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #222;
+    }
+    .skills-list li {
+      margin-bottom: 6px;
+      padding-left: 0.5em;
+      text-indent: -0.5em;
+    }
+    .actions {
+      margin: 32px 48px 0 48px;
+      text-align: right;
+    }
+    .actions button {
+      background: #222;
+      color: #fff;
+      padding: 9px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 1rem;
+    }
+    .actions button:hover {
+      background: #444;
+    }
+    @media (max-width: 900px) {
+      .main-content, .actions {
+        flex-direction: column;
+        padding: 18px 8vw 0 8vw;
+        gap: 18px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 8vw 12px 8vw;
+      }
+      .logo {
+        margin-bottom: 12px;
+      }
+      .left-col, .right-col {
+        width: 100%;
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <div class="header">
+      <div class="logo" contenteditable="true">⚖️</div>
+      <div class="header-title">
+        <h1 contenteditable="true">Vance Rey</h1>
+        <h2 contenteditable="true">Paralegal</h2>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="left-col">
+        <div class="section">
+          <div class="section-title">Contact</div>
+          <div class="section-content" contenteditable="true">
+            Albany, NY<br>
+            (716) 555-0100<br>
+            vance@example.com<br>
+            www.interestingsite.com
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title">Profile</div>
+          <div class="profile-text" contenteditable="true">
+            Organized, dedicated, and ambitious budding professional with excellent attention to detail, and thirst for learning. Interested in working closely with experienced attorneys and contributing to the success of a dynamic law firm. Offering a degree in paralegal studies and over four years of work experience in legal support and legal research, seeking an entry-level paralegal position at a mid-sized law firm.
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title">Key skills and characteristics</div>
+          <ul class="skills-list">
+            <li contenteditable="true">Critical thinking</li>
+            <li contenteditable="true">Handling pressure</li>
+            <li contenteditable="true">Leadership</li>
+            <li contenteditable="true">Problem solving</li>
+            <li contenteditable="true">Microsoft Office Suite</li>
+            <li contenteditable="true">90 wpm typing speed</li>
+            <li contenteditable="true">Adaptability</li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="section">
+          <div class="section-title">Experience</div>
+          <div class="exp-row">
+            <div class="exp-date" contenteditable="true">September 20XX – present</div>
+            <div class="exp-details">
+              <div class="exp-title" contenteditable="true">Paralegal Intern, <span style='font-style:italic;'>Mitchell, Morris, Ward, & Cook</span></div>
+              <div class="exp-desc" contenteditable="true">Support senior paralegals with legal research and document management in preparation for civil and criminal trials. Schedule and conduct client, witness, and attorney interviews in preparation for depositions and trial. Administrative support, including database and file management, answering phones and general office duties.</div>
+            </div>
+          </div>
+          <div class="exp-row">
+            <div class="exp-date" contenteditable="true">June 20XX – September 20XX</div>
+            <div class="exp-details">
+              <div class="exp-title" contenteditable="true">Legal Secretary, <span style='font-style:italic;'>Mitchell, Morris, Ward, & Cook</span></div>
+              <div class="exp-desc" contenteditable="true">Legal document preparation and management. Administrative and scheduling for senior partners. Coordinated conferences and meetings between attorneys and current and prospective clients. Maintained firm's master calendar.</div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title">Education</div>
+          <div class="edu-row">
+            <div class="edu-date" contenteditable="true">June 20XX</div>
+            <div class="edu-details">
+              <div class="edu-title" contenteditable="true">Bellows College</div>
+              <div class="edu-meta" contenteditable="true">Bachelor of Science in Paralegal Studies<br>Certified Registered Paralegal</div>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-date" contenteditable="true">June 20XX</div>
+            <div class="edu-details">
+              <div class="edu-title" contenteditable="true">Bellows College</div>
+              <div class="edu-meta" contenteditable="true">Associate in Arts in Paralegal Studies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions" id="action-buttons">
+      <button onclick="window.history.back()">Back</button>
+      <button onclick="downloadPDF()">Download PDF</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function downloadPDF() {
+      const actionButtons = document.getElementById('action-buttons');
+      actionButtons.style.display = 'none';
+      const element = document.querySelector('.resume-container');
+      const opt = {
+        margin:       0.2,
+        filename:     'resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save().then(() => {
+        actionButtons.style.display = '';
+      });
+    }
+  </script>
+</body>
+</html>

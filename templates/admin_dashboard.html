@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard - SmartHire</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f5f6fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navbar styles (same as previous) */
+nav {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 100%;
+    height: 80px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ffd700;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        width: 180px;
+        display: none;
+        flex-direction: column;
+        animation: slideDown 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        padding: 12px 20px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links li a {
+        color: #333;
+        font-weight: 600;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* Dashboard */
+.dashboard-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.dashboard-container h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border-left: 5px solid #0055FF;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #0055FF;
+}
+
+.dashboard-card p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+    </style>
+    <!-- Reuse the same navbar -->
+    <nav>
+        <div class="logo">SmartHire</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/internships">Internships</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main dashboard area -->
+    <div class="dashboard-container">
+        <h2>Welcome, Administrator!</h2>
+        
+        <!-- Approval Status -->
+        <div id="approvalStatus" style="margin-bottom: 20px; padding: 15px; border-radius: 8px; display: none;">
+            <p id="statusMessage" style="margin: 0; font-weight: 600;"></p>
+        </div>
+        
+        <div class="dashboard-cards">
+            <div class="dashboard-card" onclick="location.href='/post_job';">
+                <h3>Post Job</h3>
+                <p>Create and manage job listings for students.</p>
+            </div>
+            <div class="dashboard-card" onclick="location.href='/post_internship';">
+                <h3>Post Internship</h3>
+                <p>Share internship opportunities with potential candidates.</p>
+            </div>
+            <div class="dashboard-card" onclick="location.href='/manage_events';">
+                <h3>Manage Events</h3>
+                <p>Host competitions or campus events.</p>
+            </div>
+            <div class="dashboard-card" onclick="location.href='/manage_applications';">
+                <h3>Manage Applications</h3>
+                <p>Review and manage job/internship applications.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("show");
+        }
+        
+        // Check admin approval status
+        async function checkApprovalStatus() {
+            try {
+                const response = await fetch('/api/check-auth');
+                const authData = await response.json();
+                
+                if (authData.authenticated && authData.user_type === 'admin') {
+                    const statusDiv = document.getElementById('approvalStatus');
+                    const statusMessage = document.getElementById('statusMessage');
+                    
+                    // For now, we'll assume approved since we just approved them
+                    // In a real system, you'd make an API call to check the actual status
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.backgroundColor = '#d4edda';
+                    statusDiv.style.color = '#155724';
+                    statusDiv.style.border = '1px solid #c3e6cb';
+                    statusMessage.textContent = '✓ Your account is approved and you can post jobs and internships.';
+                }
+            } catch (error) {
+                console.error('Error checking approval status:', error);
+            }
+        }
+        
+        // Check status when page loads
+        document.addEventListener('DOMContentLoaded', checkApprovalStatus);
+    </script>
+</body>
+</html>

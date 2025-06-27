@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template - David Milano Style</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #222;
+    }
+    .resume-container {
+      display: flex;
+      max-width: 950px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .sidebar {
+      background: #222;
+      color: #fff;
+      width: 32%;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 250px;
+    }
+    .sidebar .logo {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .sidebar .logo span {
+      display: inline-block;
+      font-size: 2.8rem;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      letter-spacing: 2px;
+      font-weight: bold;
+      border: 2px solid #fff;
+      padding: 18px 0;
+      width: 100%;
+      background: #222;
+    }
+    .sidebar h3 {
+      margin-top: 24px;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 4px;
+      width: 100%;
+    }
+    .sidebar .section {
+      margin-bottom: 18px;
+      width: 100%;
+    }
+    .sidebar ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+    .sidebar li {
+      margin-bottom: 7px;
+      font-size: 0.98rem;
+    }
+    .sidebar textarea {
+      width: 100%;
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 7px;
+      font-size: 1rem;
+      resize: vertical;
+      margin-top: 6px;
+    }
+    .main {
+      flex: 1;
+      padding: 36px 38px 36px 38px;
+      background: #fff;
+    }
+    .main h1[contenteditable], .main h2[contenteditable] {
+      outline: none;
+      display: inline-block;
+    }
+    .main h1 {
+      font-size: 2.5rem;
+      margin: 0 0 8px 0;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .main h2 {
+      font-size: 2rem;
+      margin: 0 0 18px 0;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .main .section {
+      margin-bottom: 28px;
+    }
+    .main h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: #222;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 3px;
+    }
+    .main .exp-title {
+      font-weight: bold;
+      font-size: 1.08rem;
+      margin-bottom: 2px;
+    }
+    .main .exp-meta {
+      font-size: 0.98rem;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .main ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+    .main li {
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+    .main textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 7px;
+      font-size: 1rem;
+      resize: vertical;
+      margin-top: 6px;
+      background: #fafafa;
+      color: #222;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 0.98rem;
+      color: #888;
+      text-align: center;
+    }
+    .actions {
+      margin-top: 18px;
+      text-align: right;
+    }
+    .actions button {
+      background: #222;
+      color: #fff;
+      padding: 9px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 1rem;
+    }
+    .actions button:hover {
+      background: #444;
+    }
+    @media (max-width: 900px) {
+      .resume-container {
+        flex-direction: column;
+        max-width: 98vw;
+      }
+      .sidebar, .main {
+        width: 100%;
+        min-width: 0;
+        padding: 24px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <div class="sidebar">
+      <div class="logo"><span contenteditable="true">D/M</span></div>
+      <div class="section">
+        <h3>About</h3>
+        <textarea rows="5" placeholder="Strong expertise in injury prevention, rehabilitation, and performance enhancement. Excellent communication skills, attention to detail, and commitment to providing quality care."></textarea>
+      </div>
+      <div class="section">
+        <h3>Education</h3>
+        <ul>
+          <li><b contenteditable="true">Doctor of Physical Therapy</b><br><span contenteditable="true">Glennwood University</span><br><span contenteditable="true">20XX – 20XX</span></li>
+          <li><b contenteditable="true">Master of Science in Athletic Training</b><br><span contenteditable="true">Glennwood University</span><br><span contenteditable="true">20XX – 20XX</span></li>
+          <li><b contenteditable="true">Bachelor of Science in Kinesiology</b><br><span contenteditable="true">Bellows College</span><br><span contenteditable="true">20XX – 20XX</span></li>
+        </ul>
+      </div>
+      <div class="section">
+        <h3>Skills</h3>
+        <ul>
+          <li contenteditable="true">Strong knowledge of injury prevention</li>
+          <li contenteditable="true">Excellent communication skills</li>
+          <li contenteditable="true">Attention to detail</li>
+          <li contenteditable="true">Ability to collaborate effectively</li>
+          <li contenteditable="true">Providing high-quality care</li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <h1 contenteditable="true">DAVID</h1>
+      <h2 contenteditable="true">MILANO</h2>
+      <div class="section">
+        <h3>Experience</h3>
+        <div>
+          <div class="exp-title" contenteditable="true">Sports Medicine Physical Therapist</div>
+          <div class="exp-meta" contenteditable="true">The San Antonio Skunks / San Antonio, TX<br>20XX – 20XX</div>
+          <ul>
+            <li contenteditable="true">Develop and implement comprehensive rehabilitation programs for athletes with sports injuries, ensuring safe and effective return to play</li>
+            <li contenteditable="true">Provide injury prevention education and training to athletes, coaches, and trainers</li>
+          </ul>
+        </div>
+        <div style="margin-top:18px;">
+          <div class="exp-title" contenteditable="true">Sports Medicine Physical Therapist</div>
+          <div class="exp-meta" contenteditable="true">Urban Elite Health & Fitness / Scottsdale, AZ<br>20XX – 20XX</div>
+          <ul>
+            <li contenteditable="true">Evaluated and treated athletes with a wide range of sports injuries, including orthopedic and neurological conditions</li>
+            <li contenteditable="true">Developed and implemented individualized treatment plans, utilizing manual therapy, therapeutic exercise, and modalities as appropriate</li>
+          </ul>
+        </div>
+        <div style="margin-top:18px;">
+          <div class="exp-title" contenteditable="true">Graduate Assistant Athletic Trainer</div>
+          <div class="exp-meta" contenteditable="true">Athletics Department / Glennwood University<br>20XX – 20XX</div>
+          <ul>
+            <li contenteditable="true">Provided athletic training services to Division I athletes in various sports, including football, basketball, and volleyball</li>
+            <li contenteditable="true">Assisted in the evaluation and treatment of sports injuries, under the supervision of a licensed athletic trainer</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">
+        <span contenteditable="true">www.interestsngsite.com</span> | <span contenteditable="true">San Antonio, TX</span> | <span contenteditable="true">davide@example.com</span> | <span contenteditable="true">404.555.0111</span>
+      </div>
+      <div class="actions" id="action-buttons">
+        <button onclick="window.history.back()">Back</button>
+        <button onclick="downloadPDF()">Download PDF</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function downloadPDF() {
+      const actionButtons = document.getElementById('action-buttons');
+      actionButtons.style.display = 'none';
+      const element = document.querySelector('.resume-container');
+      const opt = {
+        margin:       0.2,
+        filename:     'resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save().then(() => {
+        actionButtons.style.display = '';
+      });
+    }
+  </script>
+</body>
+</html>

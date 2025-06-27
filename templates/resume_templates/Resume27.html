@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 27 - SmartHire Resume Builder</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8e44ad, #3498db);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .header-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #333;
+      padding: 1rem 2rem;
+      margin: -20px -20px 20px -20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-bar h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #8e44ad;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-btn {
+      background: #8e44ad;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .header-btn:hover {
+      background: #7d3c98;
+      transform: translateY(-2px);
+    }
+    
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-section {
+      background: linear-gradient(135deg, #8e44ad, #3498db);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .title {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+    }
+    
+    .content-section {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      color: #8e44ad;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border-left: 5px solid #8e44ad;
+    }
+    
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #8e44ad;
+      margin-bottom: 5px;
+    }
+    
+    .company-info {
+      font-size: 1.1rem;
+      color: #3498db;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .job-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-category {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #8e44ad;
+    }
+    
+    .skill-category h4 {
+      color: #8e44ad;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-list li {
+      padding: 8px 0;
+      color: #555;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .skill-list li:before {
+      content: "📚";
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+    
+    [contenteditable="true"] {
+      outline: 1px dashed #8e44ad;
+      padding: 2px;
+      border-radius: 3px;
+      transition: outline 0.3s ease;
+    }
+    
+    [contenteditable="true"]:focus {
+      outline: 2px solid #8e44ad;
+      background: rgba(142, 68, 173, 0.05);
+    }
+    
+    @media print {
+      .header-bar, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .resume-container {
+        box-shadow: none;
+        background: white;
+      }
+      
+      .header-section {
+        background: #8e44ad;
+        color: white;
+      }
+      
+      .content-section {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h2><i class="fas fa-chalkboard-teacher"></i> SmartHire Resume Builder - Template 27</h2>
+    <div class="header-actions">
+      <button class="header-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Templates
+      </button>
+      <button class="header-btn" onclick="downloadResume()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="header-section">
+      <div class="name" contenteditable="true">YOUR NAME</div>
+      <div class="title" contenteditable="true">High School Teacher</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span contenteditable="true">your.email@example.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span contenteditable="true">(555) 555-0123</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span contenteditable="true">City, State</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-id-card"></i>
+          <span contenteditable="true">Teaching License #12345</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          TEACHING EXPERIENCE
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">High School Mathematics Teacher</div>
+          <div class="company-info" contenteditable="true">City High School | 2020 - Present</div>
+          <div class="job-description" contenteditable="true">
+            • Teach Algebra I, Geometry, and Advanced Mathematics to 150+ students annually<br>
+            • Implement differentiated instruction strategies to meet diverse learning needs<br>
+            • Achieved 85% student proficiency rate on state standardized tests<br>
+            • Serve as Mathematics Department Chair and mentor new teachers
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Middle School Math Teacher</div>
+          <div class="company-info" contenteditable="true">Community Middle School | 2018 - 2020</div>
+          <div class="job-description" contenteditable="true">
+            • Taught Pre-Algebra and Mathematics to 6th-8th grade students<br>
+            • Developed engaging lesson plans incorporating technology and real-world applications<br>
+            • Collaborated with special education teachers to support students with learning differences<br>
+            • Organized after-school math club and competition teams
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          EDUCATION
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Master of Education in Mathematics</div>
+          <div class="company-info" contenteditable="true">University Name | 2016 - 2018</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.9/4.0 | Mathematics Education Association Member
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="job-title" contenteditable="true">Bachelor of Science in Mathematics</div>
+          <div class="company-info" contenteditable="true">University Name | 2012 - 2016</div>
+          <div class="job-description" contenteditable="true">
+            GPA: 3.8/4.0 | Dean's List | Mathematics Honor Society
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-tools"></i>
+          TEACHING SKILLS
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Instructional Methods</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Differentiated Instruction</li>
+              <li contenteditable="true">Project-Based Learning</li>
+              <li contenteditable="true">Technology Integration</li>
+              <li contenteditable="true">Assessment Design</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Subject Expertise</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Algebra I & II</li>
+              <li contenteditable="true">Geometry</li>
+              <li contenteditable="true">Calculus</li>
+              <li contenteditable="true">Statistics</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Technology & Tools</h4>
+            <ul class="skill-list">
+              <li contenteditable="true">Google Classroom</li>
+              <li contenteditable="true">Desmos</li>
+              <li contenteditable="true">Khan Academy</li>
+              <li contenteditable="true">Smart Board</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = '/resume_builder';
+    }
+
+    function downloadResume() {
+      const element = document.querySelector('.resume-container');
+      
+      // Hide header for PDF
+      const header = document.querySelector('.header-bar');
+      header.style.display = 'none';
+      
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show header again after download
+        header.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html> 

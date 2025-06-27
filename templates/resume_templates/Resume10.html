@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teaching Resume Template</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+    }
+
+    .left {
+      width: 35%;
+      padding-right: 20px;
+      border-right: 2px solid #ddd;
+    }
+
+    .right {
+      width: 65%;
+      padding-left: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: purple;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 30px;
+      border-bottom: 2px solid purple;
+      padding-bottom: 5px;
+    }
+
+    p, li {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #6a1b9a;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: #4a0072;
+    }
+
+    .contact-info {
+      font-size: 14px;
+    }
+
+    .star {
+      color: purple;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Left Column -->
+    <div class="left">
+
+      <h1 contenteditable="true">Tonnie Thomsen</h1>
+      <div class="star">★★</div>
+
+      <h3>OBJECTIVE</h3>
+      <textarea rows="6" placeholder="Write your teaching objective here..."></textarea>
+
+      <h3>SKILLS</h3>
+      <ul>
+        <li contenteditable="true">Communication</li>
+        <li contenteditable="true">Problem-solving</li>
+        <li contenteditable="true">Critical thinking</li>
+        <li contenteditable="true">Time management</li>
+        <li contenteditable="true">Lesson planning</li>
+        <li contenteditable="true">Leadership</li>
+        <li contenteditable="true">Creative writing</li>
+      </ul>
+
+      <h3>ADDRESS</h3>
+      <p contenteditable="true">987 6th Ave<br>Santa Fe, NM 76543<br>USA</p>
+
+      <h3>PHONE</h3>
+      <p contenteditable="true">706.555.0123</p>
+
+      <h3>EMAIL</h3>
+      <p contenteditable="true">tonnie@example.com</p>
+
+      <h3>WEBSITE</h3>
+      <p contenteditable="true">www.interestingsite.com</p>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right">
+
+      <h3>EXPERIENCE</h3>
+      <p contenteditable="true"><strong>JAN 20XX – AUG 20XX</strong><br>Teacher - Balsam Elementary School · Santa Fe, NM</p>
+      <textarea rows="4" placeholder="Describe your role and responsibilities..."></textarea>
+
+      <p contenteditable="true"><strong>OCT 20XX – MAY 20XX</strong><br>Teacher's Aide - Balsam Elementary School · Santa Fe, NM</p>
+      <textarea rows="4" placeholder="Describe your role and responsibilities..."></textarea>
+
+      <p contenteditable="true"><strong>SEP 20XX – JUN 20XX</strong><br>Teacher's Aide - Balsam Elementary School · Santa Fe, NM</p>
+      <textarea rows="4" placeholder="Describe your role and responsibilities..."></textarea>
+
+      <h3>EDUCATION</h3>
+      <p contenteditable="true">Bellows College | Santa Fe, NM<br>Bachelor's Degree in Elementary Education</p>
+
+      <h3>COMMUNICATION</h3>
+      <textarea rows="4" placeholder="Describe your communication strengths..."></textarea>
+
+      <h3>LEADERSHIP</h3>
+      <textarea rows="4" placeholder="Describe your leadership experience..."></textarea>
+
+      <h3>REFERENCES</h3>
+      <p contenteditable="true">Available upon request.</p>
+
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <button onclick="window.history.back()">Back</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <script>
+    function downloadPDF() {
+      alert("PDF download functionality to be implemented.");
+    }
+  </script>
+
+</body>
+
+</html>

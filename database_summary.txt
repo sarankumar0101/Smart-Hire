@@ -1,0 +1,177 @@
+============================================================
+SMARTHIRE DATABASE SUMMARY
+============================================================
+Generated on: 2025-06-26 23:59:31
+Database location: instance/smarthire.db
+Excel file: smarthire_database.xlsx
+Total tables: 9
+============================================================
+
+Table: STUDENT
+----------------------------------------
+Records: 1
+Columns: 13
+Column names:
+  - id (INTEGER)
+  - first_name (VARCHAR(50))
+  - last_name (VARCHAR(50))
+  - email (VARCHAR(120))
+  - password_hash (VARCHAR(255))
+  - date_of_birth (DATE)
+  - college (VARCHAR(100))
+  - course (VARCHAR(50))
+  - graduation_year (VARCHAR(10))
+  - current_year (VARCHAR(20))
+  - roll_number (VARCHAR(20))
+  - created_at (DATETIME)
+  - is_verified (BOOLEAN)
+
+Table: ADMINISTRATOR
+----------------------------------------
+Records: 0
+Columns: 14
+Column names:
+  - id (INTEGER)
+  - full_name (VARCHAR(100))
+  - email (VARCHAR(120))
+  - password_hash (VARCHAR(255))
+  - organization (VARCHAR(100))
+  - designation (VARCHAR(50))
+  - org_website (VARCHAR(200))
+  - purpose (VARCHAR(100))
+  - admin_code (VARCHAR(50))
+  - created_at (DATETIME)
+  - is_verified (BOOLEAN)
+  - is_approved (BOOLEAN)
+  - admin_level (VARCHAR(20))
+  - status (VARCHAR(20))
+
+Table: SERVER_ADMIN
+----------------------------------------
+Records: 0
+Columns: 10
+Column names:
+  - id (INTEGER)
+  - username (VARCHAR(50))
+  - email (VARCHAR(120))
+  - password_hash (VARCHAR(255))
+  - full_name (VARCHAR(100))
+  - role (VARCHAR(50))
+  - permissions (TEXT)
+  - last_login (DATETIME)
+  - created_at (DATETIME)
+  - is_active (BOOLEAN)
+
+Table: JOB
+----------------------------------------
+Records: 0
+Columns: 16
+Column names:
+  - id (INTEGER)
+  - title (VARCHAR(100))
+  - company (VARCHAR(100))
+  - location (VARCHAR(100))
+  - description (TEXT)
+  - requirements (TEXT)
+  - salary_range (VARCHAR(50))
+  - job_type (VARCHAR(20))
+  - posted_by (INTEGER)
+  - posted_at (DATETIME)
+  - is_active (BOOLEAN)
+  - is_approved (BOOLEAN)
+  - status (VARCHAR(20))
+  - flagged_reason (TEXT)
+  - reviewed_by (INTEGER)
+  - reviewed_at (DATETIME)
+
+Table: INTERNSHIP
+----------------------------------------
+Records: 0
+Columns: 17
+Column names:
+  - id (INTEGER)
+  - title (VARCHAR(100))
+  - company (VARCHAR(100))
+  - location (VARCHAR(100))
+  - description (TEXT)
+  - requirements (TEXT)
+  - duration (VARCHAR(50))
+  - stipend (VARCHAR(50))
+  - internship_type (VARCHAR(20))
+  - posted_by (INTEGER)
+  - posted_at (DATETIME)
+  - is_active (BOOLEAN)
+  - is_approved (BOOLEAN)
+  - status (VARCHAR(20))
+  - flagged_reason (TEXT)
+  - reviewed_by (INTEGER)
+  - reviewed_at (DATETIME)
+
+Table: RESUME_ANALYSIS
+----------------------------------------
+Records: 0
+Columns: 8
+Column names:
+  - id (INTEGER)
+  - student_id (INTEGER)
+  - original_content (TEXT)
+  - strengths (TEXT)
+  - weaknesses (TEXT)
+  - suggestions (TEXT)
+  - grammar_issues (TEXT)
+  - analyzed_at (DATETIME)
+
+Table: APPLICATION
+----------------------------------------
+Records: 0
+Columns: 15
+Column names:
+  - id (INTEGER)
+  - student_id (INTEGER)
+  - job_id (INTEGER)
+  - internship_id (INTEGER)
+  - applied_at (DATETIME)
+  - status (VARCHAR(20))
+  - cover_letter (TEXT)
+  - resume_filename (VARCHAR(255))
+  - phone_number (VARCHAR(20))
+  - current_cgpa (VARCHAR(10))
+  - skills (TEXT)
+  - experience (TEXT)
+  - projects (TEXT)
+  - why_interested (TEXT)
+  - availability (VARCHAR(100))
+
+Table: COMPETITION
+----------------------------------------
+Records: 0
+Columns: 16
+Column names:
+  - id (INTEGER)
+  - title (VARCHAR(100))
+  - organizer (VARCHAR(100))
+  - description (TEXT)
+  - category (VARCHAR(50))
+  - prize_pool (VARCHAR(100))
+  - deadline (DATETIME)
+  - start_date (DATETIME)
+  - end_date (DATETIME)
+  - max_participants (INTEGER)
+  - current_participants (INTEGER)
+  - eligibility (TEXT)
+  - rules (TEXT)
+  - posted_by (INTEGER)
+  - posted_at (DATETIME)
+  - is_active (BOOLEAN)
+
+Table: COMPETITION_PARTICIPANT
+----------------------------------------
+Records: 0
+Columns: 5
+Column names:
+  - id (INTEGER)
+  - competition_id (INTEGER)
+  - student_id (INTEGER)
+  - registered_at (DATETIME)
+  - status (VARCHAR(20))
+
