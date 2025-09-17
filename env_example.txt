@@ -1,0 +1,17 @@
+# Flask Secret Key
+SECRET_KEY=your_secret_key_here
+
+# Gemini API Key
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# Email Password (Gmail App Password)
+EMAIL_PASSWORD=your_email_app_password_here
+
+# SQLite Database Configuration
+DATABASE_URL=sqlite:///smarthire.db
+
+# Example for local development:
+# DATABASE_URL=sqlite:///smarthire.db
+
+# Example for Vercel deployment:
+# DATABASE_URL=sqlite:///smarthire.db 

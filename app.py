@@ -12,13 +12,34 @@ from werkzeug.utils import secure_filename
 import secrets
 import string
 import requests
+from dotenv import load_dotenv
+import pymysql
+
+# Load environment variables
+load_dotenv()
+
+# Configure PyMySQL to work with SQLAlchemy
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey123'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///smarthire.db'
+app.secret_key = os.environ.get('SECRET_KEY', 'supersecretkey123')
+
+# Database configuration - supports both SQLite and AWS RDS
+if os.environ.get('AWS_DEPLOYMENT'):
+    # Use AWS RDS (MySQL/PostgreSQL) for production
+    database_url = os.environ.get('DATABASE_URL')
+    if database_url and database_url.startswith('postgres://'):
+        # Convert postgres:// to postgresql:// for newer versions
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+else:
+    # Use SQLite for local development
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///smarthire.db')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+
 # Session configuration
 app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 24 * 60 * 60  # 30 days for "Remember Me"
 app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
@@ -38,7 +59,9 @@ def allowed_file(filename):
 
 db = SQLAlchemy(app)
 
-# The /analyze route is already using the Gemini REST API via requests, so no further changes needed there.
+# Get API keys from environment variables
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', 'AIzaSyB0_1qrv04YNN8n2R6iH5SuwEgj6r0Or2k')
+EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD', 'hwqd hzpv srus akig')
 
 otp_store = {}
 password_reset_tokens = {}  # Store reset tokens with expiration
@@ -345,7 +368,7 @@ def send_otp():
 
     try:
         sender_email = "smarthire2k25@gmail.com"
-        sender_password = "hwqd hzpv srus akig"
+        sender_password = EMAIL_PASSWORD
         message = f"Subject: SmartHire OTP Verification\n\nYour OTP is: {otp}"
 
         context = ssl.create_default_context()
@@ -371,7 +394,7 @@ def send_application_status_email(student_email, student_name, job_title, compan
     """Send email notification to student about application status, including job/internship details if accepted."""
     try:
         sender_email = "smarthire2k25@gmail.com"
-        sender_password = "hwqd hzpv srus akig"
+        sender_password = EMAIL_PASSWORD
         
         if status == 'Accepted':
             subject = "Congratulations! You've been shortlisted for further interview"
@@ -444,7 +467,7 @@ def analyze_resume():
         """
 
         # Gemini REST API call
-        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyB0_1qrv04YNN8n2R6iH5SuwEgj6r0Or2k"
+        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY
         headers = {"Content-Type": "application/json"}
         data = {
             "contents": [
@@ -1311,7 +1334,7 @@ def forgot_password():
             # Send OTP email
             try:
                 sender_email = "smarthire2k25@gmail.com"
-                sender_password = "hwqd hzpv srus akig"
+                sender_password = EMAIL_PASSWORD
                 
                 subject = "SmartHire - Password Reset OTP"
                 message = f"""
@@ -1503,6 +1526,10 @@ def save_resume():
         return jsonify({"status": "success", "message": "Resume saved successfully!"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/ats_score_checker')
+def ats_score_checker():
+    return render_template('ats_score_checker.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
